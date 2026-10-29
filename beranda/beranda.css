@@ -5,9 +5,10 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     background: #171A21;
     color: white;
+    min-height: 100vh;
 }
 
 .hero-container {
@@ -16,49 +17,34 @@ body {
     justify-content: center;
     align-items: center;
     padding: 25px;
-    background-color: #171A21;
-}
-
-.tech-grid,
-.abstract-circle {
-    display: none;
 }
 
 .role-card {
     width: 100%;
     max-width: 720px;
     padding: 40px;
+    background: #1E222B;
+    border: 1px solid #383D49;
+    border-radius: 12px;
     text-align: center;
-    border: 1px solid #1877F2;
-    border-radius: 24px;
 }
 
 .title {
-    font-size: 34px;
-    font-weight: 700;
     margin-bottom: 20px;
+    color: white;
+    font-size: 34px;
+    font-weight: 600;
 }
 
 .title span {
     color: #1877F2;
 }
 
-.card-header {
-    margin-bottom: 25px;
-}
-
-.tech-tag {
-    display: inline-block;
-    padding: 8px 15px;
-    font-size: 17px;
-    color: white;
-    border-radius: 20px;
-}
-
 .subtitle {
-    color: white;
-    font-size: 17spx;
     margin-bottom: 25px;
+    color: #A0A5B1;
+    font-size: 14px;
+    line-height: 1.6;
 }
 
 .button-group {
@@ -72,17 +58,25 @@ body {
     align-items: center;
     gap: 15px;
     padding: 20px;
+    background: #22262F;
+    color: white;
+    border: 1px solid #383D49;
+    border-radius: 8px;
     text-align: left;
     text-decoration: none;
-    color: white;
-    background: #222;
-    border: 1px solid #383838;  
-    border-radius: 16px;
-    transition: 0.25s ease;
+    transition: border-color 0.2s, background-color 0.2s;
 }
 
-.role-btn:hover {
+.role-btn:hover,
+.role-btn:focus {
+    background: #22262F;
     border-color: #1877F2;
+    outline: none;
+}
+
+.role-btn:focus-visible {
+    outline: 2px solid #1877F2;
+    outline-offset: 3px;
 }
 
 .icon-wrapper {
@@ -92,9 +86,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background: #303540;
+    border: 1px solid #383D49;
+    border-radius: 7px;
     font-size: 23px;
-    background: white;
-    border-radius: 12px;
 }
 
 .btn-text {
@@ -104,18 +99,24 @@ body {
 }
 
 .btn-label {
-    font-size: 16px;
+    color: #F3F4F6;
+    font-size: 15px;
     font-weight: 600;
 }
 
 .btn-sub {
-    font-size: 14px;
-    color: darkgray;
+    color: #A0A5B1;
+    font-size: 13px;
+    line-height: 1.5;
 }
 
 @media (max-width: 600px) {
+    .hero-container {
+        padding: 20px 12px;
+    }
+
     .role-card {
-        padding: 30px 20px;
+        padding: 25px 16px;
     }
 
     .title {
