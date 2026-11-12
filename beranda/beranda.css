@@ -1,0 +1,184 @@
+/* reset css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* desain dasar halaman */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #171A21;
+    color: white;
+    min-height: 100vh;
+}
+
+/* posisi container utama */
+.hero-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+
+/* desain kartu utama */
+.role-card {
+    width: 100%;
+    max-width: 720px;
+    padding: 40px;
+    background: #1E222B;
+    border: 1px solid #383D49;
+    border-radius: 12px;
+    text-align: center;
+}
+
+/* judul halaman */
+.title {
+    margin-bottom: 20px;
+    color: white;
+    font-size: 34px;
+    font-weight: 600;
+}
+
+/* warna teks pada bagian judul */
+.title span {
+    color: #1877F2;
+}
+
+/* deskripsi halaman */
+.subtitle {
+    margin-bottom: 25px;
+    color: #A0A5B1;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* posisi kelompok tombol */
+.button-group {
+    display: flex;
+    gap: 15px;
+}
+
+/* desain tombol pilihan peran */
+.role-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: #22262F;
+    color: white;
+    border: 1px solid #383D49;
+    border-radius: 8px;
+    text-align: left;
+    text-decoration: none;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+/* efek hover dan fokus tombol */
+.role-btn:hover,
+.role-btn:focus {
+    background: #22262F;
+    border-color: #1877F2;
+    outline: none;
+}
+
+/* indikator fokus keyboard */
+.role-btn:focus-visible {
+    outline: 2px solid #1877F2;
+    outline-offset: 3px;
+}
+
+/* kotak ikon */
+.icon-wrapper {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #303540;
+    border: 1px solid #383D49;
+    border-radius: 7px;
+    font-size: 23px;
+}
+
+/* susunan teks tombol */
+.btn-text {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* judul tombol */
+.btn-label {
+    color: #F3F4F6;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* deskripsi tombol */
+.btn-sub {
+    color: #A0A5B1;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* responsive: smartphone */
+@media (max-width: 600px) {
+    .hero-container {
+        padding: 20px 12px;
+    }
+
+    .role-card {
+        padding: 25px 16px;
+    }
+
+    .title {
+        font-size: 27px;
+    }
+
+    .subtitle {
+        font-size: 13px;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .role-btn {
+        padding: 16px;
+    }
+
+    .icon-wrapper {
+        width: 48px;
+        height: 48px;
+        font-size: 21px;
+    }
+}
+
+/* responsive: tablet */
+@media (max-width: 900px) {
+    .hero-container {
+        padding: 20px;
+    }
+
+    .role-card {
+        max-width: 600px;
+        padding: 32px;
+    }
+
+    .title {
+        font-size: 30px;
+    }
+
+    .button-group {
+        gap: 12px;
+    }
+
+    .role-btn {
+        padding: 16px;
+        gap: 12px;
+    }
+}

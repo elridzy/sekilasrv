@@ -1,0 +1,366 @@
+/* reset css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* desain dasar halaman */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #171A21;
+    color: white;
+    min-height: 100vh;
+}
+
+/* container utama halaman */
+.page-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+/* container konten kategori */
+.content-container {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+/* container form */
+.form-container {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+/* desain kartu kategori */
+.category-card {
+    width: 100%;
+    max-width: 650px;
+    padding: 28px;
+    background: #1E222B;
+    border: 1px solid #383D49;
+    border-radius: 12px;
+}
+
+/* penyesuaian kartu pada halaman form */
+.form-container .category-card {
+    max-width: 100%;
+}
+
+/* bagian header kartu */
+.card-header {
+    margin-bottom: 25px;
+}
+
+/* judul halaman */
+.title {
+    margin-bottom: 8px;
+    color: white;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+/* pengaturan dasar tombol dan link */
+button,
+a {
+    font-family: inherit;
+    font-size: 13px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+/* tombol cek halaman customer */
+.back-btn {
+    display: table;
+    margin: 0 0 15px;
+    padding: 10px 16px;
+    background: #22262F;
+    color: white;
+    border: 1px solid #383D49;
+    border-radius: 7px;
+    text-align: center;
+    outline: none;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* efek hover, fokus, dan aktif tombol customer */
+.back-btn:hover,
+.back-btn:focus,
+.back-btn:active {
+    background: #22262F;
+    border-color: #1877F2;
+    outline: none;
+}
+
+/* kelompok input form */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* label input form */
+.form-group label {
+    color: #E5E7EB;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* desain kolom input */
+.form-group input {
+    width: 100%;
+    padding: 12px 14px;
+    background: #22262F;
+    border: 1px solid #383D49;
+    border-radius: 7px;
+    color: white;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+/* warna teks placeholder */
+.form-group input::placeholder {
+    color: #777E8B;
+}
+
+/* efek fokus pada kolom input */
+.form-group input:focus {
+    border-color: #1877F2;
+}
+
+/* desain tombol submit */
+.submit-btn {
+    width: 100%;
+    padding: 12px 16px;
+    background: #1877F2;
+    border: none;
+    border-radius: 7px;
+    color: white;
+    font-weight: normal;
+}
+
+/* efek hover tombol submit */
+.submit-btn:hover {
+    background: #0F65D4;
+}
+
+/* bagian daftar kategori */
+.category-list {
+    margin-top: 30px;
+}
+
+/* judul daftar kategori */
+.category-list h2 {
+    margin-bottom: 18px;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* susunan daftar kategori */
+.category-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* desain item kategori */
+.category-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: #22262F;
+    border: 1px solid #383D49;
+    border-radius: 8px;
+}
+
+/* container informasi kategori */
+.category-info {
+    flex: 1;
+    min-width: 0;
+}
+
+/* nama kategori */
+.category-name {
+    color: #F3F4F6;
+    font-size: 15px;
+    font-weight: 500;
+    overflow-wrap: anywhere;
+}
+
+/* container tombol aksi kategori */
+.category-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* pengaturan form tombol aksi */
+.category-actions form {
+    margin: 0;
+}
+
+/* pengaturan dasar tombol aksi kategori */
+.manage-btn,
+.edit-btn,
+.delete-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: normal;
+    white-space: nowrap;
+}
+
+/* tombol kelola jasa */
+.manage-btn {
+    background: #00AA13;
+    color: white;
+}
+
+/* efek hover tombol kelola jasa */
+.manage-btn:hover {
+    background: #008F10;
+}
+
+/* tombol edit kategori */
+.edit-btn {
+    background: #F0C419;
+    color: #171717;
+}
+
+/* efek hover tombol edit */
+.edit-btn:hover {
+    background: #D9AF0F;
+}
+
+/* tombol hapus kategori */
+.delete-btn {
+    background: #D93636;
+    color: white;
+}
+
+/* efek hover tombol hapus */
+.delete-btn:hover {
+    background: #B92727;
+}
+
+/* pesan ketika daftar kategori kosong */
+.empty-message {
+    padding: 20px;
+    background: #22262F;
+    border: 1px solid #383D49;
+    border-radius: 8px;
+    color: #A0A5B1;
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.6;
+}
+
+/* pengaturan dasar pesan berhasil dan gagal */
+.success-message,
+.error-message {
+    display: table;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 0 20px;
+    padding: 12px 15px;
+    border-radius: 7px;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* pesan berhasil */
+.success-message {
+    background: #123B25;
+    border: 1px solid #176B3A;
+    color: #7BE6A1;
+}
+
+/* pesan gagal */
+.error-message {
+    background: #401F22;
+    border: 1px solid #7F292E;
+    color: #FF9298;
+}
+
+/* efek fokus pada tombol dan link */
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid #1877F2;
+    outline-offset: 3px;
+}
+
+/* responsive: smartphone */
+@media (max-width: 600px) {
+    .hero-container {
+        padding: 20px 12px;
+    }
+
+    .role-card {
+        padding: 25px 16px;
+    }
+
+    .title {
+        font-size: 27px;
+    }
+
+    .subtitle {
+        font-size: 13px;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .role-btn {
+        padding: 16px;
+    }
+
+    .icon-wrapper {
+        width: 48px;
+        height: 48px;
+        font-size: 21px;
+    }
+}
+
+/* responsive: tablet */
+@media (max-width: 900px) {
+    .hero-container {
+        padding: 20px;
+    }
+
+    .role-card {
+        max-width: 600px;
+        padding: 32px;
+    }
+
+    .title {
+        font-size: 30px;
+    }
+
+    .button-group {
+        gap: 12px;
+    }
+
+    .role-btn {
+        padding: 16px;
+        gap: 12px;
+    }
+}

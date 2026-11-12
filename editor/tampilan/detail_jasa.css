@@ -1,0 +1,483 @@
+/* reset css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* desain dasar halaman */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #171A21;
+    color: #FFFFFF;
+    min-height: 100vh;
+}
+
+/* container utama */
+.container {
+    width: calc(100% - 40px);
+    max-width: 1100px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* header halaman */
+.page-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.page-header h1 {
+    font-size: 24px;
+    margin-bottom: 6px;
+}
+
+.page-header p {
+    color: #AAB0BC;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* header aksi dan judul data jasa */
+.action-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+}
+
+.action-header h2 {
+    font-size: 19px;
+    margin-bottom: 5px;
+}
+
+.action-header p {
+    color: #AAB0BC;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* posisi tombol di header */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* tombol tambah portofolio */
+.add-btn {
+    display: inline-block;
+    text-decoration: none;
+    background: #1877F2;
+    color: #FFFFFF;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: normal;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.add-btn:hover {
+    background: #0866D6;
+}
+
+/* tombol cek halaman customer */
+.customer-btn {
+    display: table;
+    margin: 0;
+    padding: 10px 16px;
+    background: #22262F;
+    color: #FFFFFF;
+    border: 1px solid #383D49;
+    border-radius: 7px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: normal;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    outline: none;
+    flex-shrink: 0;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.customer-btn:hover,
+.customer-btn:focus,
+.customer-btn:active {
+    background: #22262F;
+    border-color: #1877F2;
+    outline: none;
+}
+
+/* tampilan ketika data jasa kosong */
+.empty-message {
+    width: 100%;
+    text-align: center;
+    padding: 45px 20px;
+    background: #1E222B;
+    border: 1px solid #383D49;
+    border-radius: 7px;
+}
+
+.empty-message h3 {
+    font-size: 18px;
+    margin-bottom: 9px;
+}
+
+.empty-message p {
+    color: #AAB0BC;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* daftar kartu jasa */
+.service-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+    width: 100%;
+    align-items: start;
+}
+
+/* desain kartu jasa */
+.service-card {
+    width: 100%;
+    min-width: 0;
+    height: fit-content;
+    background: #1E222B;
+    border: 1px solid #383D49;
+    border-radius: 7px;
+    padding: 20px;
+}
+
+/* bagian portofolio */
+.portfolio-section {
+    width: 100%;
+}
+
+.portfolio-section h4 {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.portfolio-section p {
+    color: #AAB0BC;
+    font-size: 13px;
+}
+
+/* daftar gambar portofolio */
+.portfolio-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* ukuran dan tampilan gambar portofolio */
+.portfolio-list img {
+    display: block;
+    width: 100%;
+    height: 150px;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid #383D49;
+}
+
+/* nama jasa */
+.service-header {
+    margin-top: 16px;
+}
+
+.service-header h3 {
+    font-size: 18px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+/* deskripsi, harga, dan tanggal upload */
+.service-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    color: #D5D9E1;
+    line-height: 1.6;
+    margin-top: 12px;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+.service-info strong {
+    color: #FFFFFF;
+}
+
+/* posisi tombol edit dan hapus */
+.service-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.service-actions form {
+    margin: 0;
+}
+
+/* desain dasar tombol edit dan hapus */
+.edit-btn,
+.delete-btn {
+    display: inline-block;
+    border: none;
+    text-decoration: none;
+    color: #FFFFFF;
+    padding: 8px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+/* tombol edit */
+.edit-btn {
+    background: #F0C419;
+    color: #171717;
+}
+
+.edit-btn:hover {
+    background: #D9AF0F;
+}
+
+/* tombol hapus */
+.delete-btn {
+    background: #D93636;
+}
+
+.delete-btn:hover {
+    background: #B92727;
+}
+
+/* kartu form tambah dan edit portofolio */
+.form-card {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+    background: #1E222B;
+    border: 1px solid #383D49;
+    border-radius: 7px;
+    padding: 25px;
+}
+
+/* judul dan deskripsi form */
+.form-header {
+    margin-bottom: 22px;
+}
+
+.form-header h1 {
+    font-size: 23px;
+    margin-bottom: 6px;
+}
+
+.form-header p {
+    color: #AAB0BC;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* kelompok input form */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 17px;
+}
+
+/* label input form */
+.form-group label {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* desain input teks dan textarea */
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    background: #22262F;
+    border: 1px solid #383D49;
+    color: #FFFFFF;
+    padding: 11px 12px;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    outline: none;
+}
+
+/* efek fokus input */
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #1877F2;
+}
+
+/* ukuran dan desain textarea */
+.form-group textarea {
+    resize: vertical;
+    min-height: 110px;
+    line-height: 1.5;
+}
+
+/* desain area pilih file */
+.form-group input[type="file"] {
+    padding: 9px;
+    cursor: pointer;
+    background: #22262F;
+    color: #AAB0BC;
+}
+
+/* desain tombol choose file */
+.form-group input[type="file"]::file-selector-button {
+    padding: 8px 13px;
+    margin-right: 12px;
+    background: #1877F2;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: normal;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+/* efek hover tombol choose file */
+.form-group input[type="file"]::file-selector-button:hover {
+    background: #0866D6;
+}
+
+/* keterangan kecil di bawah input */
+.form-group small {
+    color: #AAB0BC;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+/* jarak gambar portofolio di form */
+.form-group .portfolio-list {
+    margin-top: 4px;
+}
+
+/* posisi tombol simpan form */
+.form-actions {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 22px;
+}
+
+/* tombol simpan */
+.submit-btn {
+    border: none;
+    background: #00AA13;
+    color: #FFFFFF;
+    padding: 10px 17px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+/* efek hover tombol simpan */
+.submit-btn:hover {
+    background: #008F10;
+}
+
+/* desain pesan berhasil dan gagal */
+.message {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    align-self: flex-start;
+    padding: 11px 14px;
+    border-radius: 5px;
+    margin-bottom: 18px;
+    font-size: 13px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+/* pesan berhasil */
+.success-message {
+    background: #183D2B;
+    border: 1px solid #267A4A;
+    color: #7FE0A4;
+}
+
+/* pesan gagal */
+.error-message {
+    background: #421F25;
+    border: 1px solid #8F303C;
+    color: #FF9CA5;
+}
+
+/* responsive: smartphone */
+@media (max-width: 600px) {
+    .hero-container {
+        padding: 20px 12px;
+    }
+
+    .role-card {
+        padding: 25px 16px;
+    }
+
+    .title {
+        font-size: 27px;
+    }
+
+    .subtitle {
+        font-size: 13px;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .role-btn {
+        padding: 16px;
+    }
+
+    .icon-wrapper {
+        width: 48px;
+        height: 48px;
+        font-size: 21px;
+    }
+}
+
+/* responsive: tablet */
+@media (max-width: 900px) {
+    .hero-container {
+        padding: 20px;
+    }
+
+    .role-card {
+        max-width: 600px;
+        padding: 32px;
+    }
+
+    .title {
+        font-size: 30px;
+    }
+
+    .button-group {
+        gap: 12px;
+    }
+
+    .role-btn {
+        padding: 16px;
+        gap: 12px;
+    }
+}

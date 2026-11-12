@@ -1,0 +1,198 @@
+/* reset css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* desain dasar halaman */
+body {
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #171A21;
+    color: #FFFFFF;
+}
+
+/* container utama halaman login */
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+
+/* pembungkus halaman login */
+.login-wrapper {
+    width: 100%;
+    max-width: 450px;
+}
+
+/* desain kartu login */
+.login-card {
+    width: 100%;
+    padding: 35px;
+    background: #1E222B;
+    border: 1px solid #383D49;
+    border-radius: 12px;
+}
+
+/* judul halaman login */
+.login-card h1 {
+    margin-bottom: 12px;
+    color: #FFFFFF;
+    font-size: 26px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* teks deskripsi di bawah judul */
+.subtitle {
+    margin-bottom: 30px;
+    color: #A0A5B1;
+    font-size: 14px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* kelompok input form */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* label input form */
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    color: #E5E7EB;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* desain kolom input username dan password */
+.form-group input {
+    width: 100%;
+    min-height: 44px;
+    padding: 12px 14px;
+    background: #22262F;
+    color: #FFFFFF;
+    border: 1px solid #383D49;
+    border-radius: 7px;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+/* efek fokus pada kolom input */
+.form-group input:focus {
+    border-color: #1877F2;
+}
+
+/* warna teks placeholder input */
+.form-group input::placeholder {
+    color: #777E8B;
+}
+
+/* desain tombol login */
+.login-btn {
+    width: 100%;
+    min-height: 44px;
+    margin-top: 5px;
+    padding: 12px 16px;
+    background: #1877F2;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 7px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: normal;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+/* efek hover tombol login */
+.login-btn:hover {
+    background: #0F65D4;
+}
+
+/* efek fokus tombol login */
+.login-btn:focus-visible {
+    outline: 2px solid #1877F2;
+    outline-offset: 3px;
+}
+
+/* desain pesan kesalahan login */
+.error-message {
+    display: table;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto 22px;
+    padding: 12px 15px;
+    background: #401F22;
+    color: #FF9298;
+    border: 1px solid #7F292E;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* responsive: smartphone */
+@media (max-width: 600px) {
+    .hero-container {
+        padding: 20px 12px;
+    }
+
+    .role-card {
+        padding: 25px 16px;
+    }
+
+    .title {
+        font-size: 27px;
+    }
+
+    .subtitle {
+        font-size: 13px;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .role-btn {
+        padding: 16px;
+    }
+
+    .icon-wrapper {
+        width: 48px;
+        height: 48px;
+        font-size: 21px;
+    }
+}
+
+/* responsive: tablet */
+@media (max-width: 900px) {
+    .hero-container {
+        padding: 20px;
+    }
+
+    .role-card {
+        max-width: 600px;
+        padding: 32px;
+    }
+
+    .title {
+        font-size: 30px;
+    }
+
+    .button-group {
+        gap: 12px;
+    }
+
+    .role-btn {
+        padding: 16px;
+        gap: 12px;
+    }
+}

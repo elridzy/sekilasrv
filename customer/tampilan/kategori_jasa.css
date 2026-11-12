@@ -1,0 +1,218 @@
+/* reset css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* desain dasar halaman */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #171A21;
+    color: #FFFFFF;
+    min-height: 100vh;
+}
+
+/* container utama halaman */
+.page-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+/* pembatas lebar konten */
+.content-container {
+    width: 100%;
+    max-width: 500px;
+}
+
+/* desain tombol kembali */
+.back-btn {
+    display: table;
+    margin-bottom: 15px;
+    padding: 10px 16px;
+    background: #22262F;
+    color: #FFFFFF;
+    border: 1px solid #383D49;
+    border-radius: 7px;
+    font-size: 13px;
+    text-decoration: none;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* efek hover tombol kembali */
+.back-btn:hover {
+    border-color: #1877F2;
+}
+
+/* desain kartu kategori */
+.category-card {
+    width: 100%;
+    padding: 24px;
+    background: #1E222B;
+    border: 1px solid #383D49;
+    border-radius: 12px;
+}
+
+/* bagian header kartu */
+.card-header {
+    margin-bottom: 25px;
+}
+
+/* judul halaman */
+.title {
+    margin-bottom: 8px;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+/* deskripsi halaman */
+.subtitle {
+    color: #A0A5B1;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* daftar kategori */
+.category-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* desain setiap item kategori */
+.category-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: #22262F;
+    border: 1px solid #383D49;
+    border-radius: 8px;
+}
+
+/* bagian informasi kategori */
+.category-info {
+    flex: 1;
+    min-width: 0;
+}
+
+/* nama kategori */
+.category-name {
+    color: #F3F4F6;
+    font-size: 15px;
+    font-weight: 500;
+    overflow-wrap: anywhere;
+}
+
+/* desain tombol lihat jasa */
+.detail-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 12px;
+    background: #00AA13;
+    color: #FFFFFF;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: normal;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.2s;
+}
+
+/* efek hover tombol lihat jasa */
+.detail-btn:hover {
+    background: #008F10;
+}
+
+/* desain pesan informasi */
+.message {
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* pesan ketika kategori kosong */
+.empty-message {
+    background: #22262F;
+    border: 1px solid #383D49;
+    color: #A0A5B1;
+}
+
+/* pesan ketika terjadi kesalahan */
+.error-message {
+    background: #401F22;
+    border: 1px solid #7F292E;
+    color: #FF9298;
+}
+
+/* indikator fokus pada tombol dan tautan */
+a:focus-visible {
+    outline: 2px solid #1877F2;
+    outline-offset: 3px;
+}
+
+/* responsive: smartphone */
+@media (max-width: 600px) {
+    .hero-container {
+        padding: 20px 12px;
+    }
+
+    .role-card {
+        padding: 25px 16px;
+    }
+
+    .title {
+        font-size: 27px;
+    }
+
+    .subtitle {
+        font-size: 13px;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .role-btn {
+        padding: 16px;
+    }
+
+    .icon-wrapper {
+        width: 48px;
+        height: 48px;
+        font-size: 21px;
+    }
+}
+
+/* responsive: tablet */
+@media (max-width: 900px) {
+    .hero-container {
+        padding: 20px;
+    }
+
+    .role-card {
+        max-width: 600px;
+        padding: 32px;
+    }
+
+    .title {
+        font-size: 30px;
+    }
+
+    .button-group {
+        gap: 12px;
+    }
+
+    .role-btn {
+        padding: 16px;
+        gap: 12px;
+    }
+}

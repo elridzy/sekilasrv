@@ -1,0 +1,229 @@
+/* reset css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* desain dasar halaman */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #171A21;
+    color: #FFFFFF;
+    min-height: 100vh;
+}
+
+/* container utama */
+.container {
+    width: 100%;
+    max-width: 1100px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* header halaman */
+.page-header {
+    margin-bottom: 25px;
+}
+
+.page-header h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    color: #B0B7C3;
+    font-size: 14px;
+}
+
+/* posisi tombol kembali */
+.action-header {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 25px;
+}
+
+/* desain tombol kembali */
+.back-btn {
+    display: inline-block;
+    text-decoration: none;
+    background: #22262F;
+    color: #FFFFFF;
+    padding: 10px 16px;
+    border: 1px solid #383D49;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: normal;
+    text-align: center;
+    outline: none;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* efek hover dan fokus tombol kembali */
+.back-btn:hover,
+.back-btn:focus,
+.back-btn:active {
+    background: #22262F;
+    border-color: #1877F2;
+    outline: none;
+}
+
+/* daftar kartu jasa */
+.service-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
+    align-items: start;
+}
+
+/* desain kartu jasa */
+.service-card {
+    width: 100%;
+    min-width: 0;
+    background: #1E222B;
+    border: 1px solid #303642;
+    border-radius: 8px;
+    padding: 18px;
+}
+
+/* bagian portofolio */
+.portfolio-section {
+    margin-bottom: 18px;
+}
+
+.portfolio-section h4 {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* tampilan gambar portofolio */
+.portfolio-list img {
+    display: block;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* tampilan ketika gambar tidak tersedia */
+.no-image {
+    width: 100%;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #292F3A;
+    color: #AAB2BF;
+    border-radius: 5px;
+    font-size: 13px;
+    text-align: center;
+    padding: 10px;
+}
+
+/* nama jasa */
+.service-header {
+    margin-bottom: 15px;
+}
+
+.service-header h3 {
+    font-size: 18px;
+    overflow-wrap: anywhere;
+}
+
+/* deskripsi, harga, dan tanggal upload */
+.service-info p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #D0D5DD;
+    margin-bottom: 12px;
+    overflow-wrap: anywhere;
+}
+
+/* teks penekanan informasi */
+.service-info strong {
+    color: #FFFFFF;
+}
+
+/* tampilan harga jasa */
+.price {
+    color: #4B9BFF;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* tampilan ketika data jasa kosong */
+.empty-message {
+    width: 100%;
+    padding: 35px 20px;
+    background: #1E222B;
+    border: 1px solid #303642;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.empty-message h3 {
+    font-size: 18px;
+}
+
+/* responsive: smartphone */
+@media (max-width: 600px) {
+    .hero-container {
+        padding: 20px 12px;
+    }
+
+    .role-card {
+        padding: 25px 16px;
+    }
+
+    .title {
+        font-size: 27px;
+    }
+
+    .subtitle {
+        font-size: 13px;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .role-btn {
+        padding: 16px;
+    }
+
+    .icon-wrapper {
+        width: 48px;
+        height: 48px;
+        font-size: 21px;
+    }
+}
+
+/* responsive: tablet */
+@media (max-width: 900px) {
+    .hero-container {
+        padding: 20px;
+    }
+
+    .role-card {
+        max-width: 600px;
+        padding: 32px;
+    }
+
+    .title {
+        font-size: 30px;
+    }
+
+    .button-group {
+        gap: 12px;
+    }
+
+    .role-btn {
+        padding: 16px;
+        gap: 12px;
+    }
+}
