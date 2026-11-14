@@ -31,7 +31,7 @@ if ($id_detail_jasa <= 0 || $id_kategori_jasa <= 0) {
 }
 
 $stmt = $pdo->prepare("
-    SELECT id_detail_jasa, gambar
+    SELECT id_detail_jasa, gambar_portofolio
     FROM detail_jasa
     WHERE id_detail_jasa = ?
     AND id_editor = ?
@@ -50,7 +50,7 @@ if (!$jasa) {
     exit('Data jasa tidak ditemukan.');
 }
 
-$gambar = $jasa['gambar'];
+$gambar = $jasa['gambar_portofolio'];
 
 try {
 

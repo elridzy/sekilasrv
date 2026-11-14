@@ -169,17 +169,32 @@ if (!is_uploaded_file($tmp_file)) {
     );
 }
 
+$ekstensi_asli = strtolower(
+    pathinfo($_FILES['gambar']['name'], PATHINFO_EXTENSION)
+);
+
+if (!in_array($ekstensi_asli, ['jpeg', 'png'], true)) {
+    kembaliDenganError(
+        'Format gambar hanya boleh JPEG dan PNG.',
+        $id_kategori_jasa,
+        $old
+    );
+}
+
 $finfo = new finfo(FILEINFO_MIME_TYPE);
 $mime = $finfo->file($tmp_file);
 
 $format = [
-    'image/jpeg' => 'jpg',
+    'image/jpeg' => 'jpeg',
     'image/png' => 'png'
 ];
 
-if (!isset($format[$mime])) {
+if (
+    !isset($format[$mime]) ||
+    $format[$mime] !== $ekstensi_asli
+) {
     kembaliDenganError(
-        'Format gambar hanya boleh JPG, JPEG, atau PNG.',
+        'Format gambar tidak sesuai. Gunakan JPEG atau PNG.',
         $id_kategori_jasa,
         $old
     );
@@ -203,9 +218,9 @@ try {
             id_kategori_jasa,
             id_editor,
             nama_jasa,
-            deskripsi,
-            harga,
-            gambar
+            deskripsi_jasa,
+            harga_jasa,
+            gambar_portofolio
         )
         VALUES (?, ?, ?, ?, ?, ?)
     ");

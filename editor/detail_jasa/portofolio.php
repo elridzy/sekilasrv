@@ -39,9 +39,9 @@ $stmt = $pdo->prepare("
         id_kategori_jasa,
         id_editor,
         nama_jasa,
-        deskripsi,
-        harga,
-        gambar,
+        deskripsi_jasa,
+        harga_jasa,
+        gambar_portofolio,
         tanggal_upload
     FROM detail_jasa
     WHERE id_kategori_jasa = ?
@@ -137,11 +137,11 @@ $pesan = $_GET['pesan'] ?? '';
                     <div class="portfolio-section">
                         <h4>Portofolio</h4>
 
-                        <?php if (!empty($jasa['gambar'])): ?>
+                        <?php if (!empty($jasa['gambar_portofolio'])): ?>
 
                             <div class="portfolio-list">
                                 <img
-                                    src="../../<?= e($jasa['gambar']) ?>"
+                                    src="../../<?= e($jasa['gambar_portofolio']) ?>"
                                     alt="Portofolio <?= e($jasa['nama_jasa']) ?>"
                                 >
                             </div>
@@ -161,12 +161,12 @@ $pesan = $_GET['pesan'] ?? '';
 
                         <p>
                             <strong>Deskripsi:</strong><br>
-                            <?= nl2br(e($jasa['deskripsi'])) ?>
+                            <?= nl2br(e($jasa['deskripsi_jasa'])) ?>
                         </p>
 
                         <p>
                             <strong>Harga:</strong><br>
-                            Rp<?= number_format((float) $jasa['harga'], 0, ',', '.') ?>
+                            Rp<?= number_format((float) $jasa['harga_jasa'], 0, ',', '.') ?>
                         </p>
 
                         <p>

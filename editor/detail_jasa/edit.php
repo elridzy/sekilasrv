@@ -117,7 +117,7 @@ unset($_SESSION['error_jasa']);
                     id="deskripsi"
                     name="deskripsi"
                     rows="5"
-                ><?= e($jasa['deskripsi']) ?></textarea>
+                ><?= e($jasa['deskripsi_jasa']) ?></textarea>
             </div>
 
             <div class="form-group">
@@ -129,7 +129,7 @@ unset($_SESSION['error_jasa']);
                     name="harga"
                     min="1"
                     step="1"
-                    value="<?= e($jasa['harga']) ?>"
+                    value="<?= e($jasa['harga_jasa']) ?>"
                     required
                 >
             </div>
@@ -137,11 +137,11 @@ unset($_SESSION['error_jasa']);
             <div class="form-group">
                 <label>Gambar Portofolio Saat Ini</label>
 
-                <?php if (!empty($jasa['gambar'])): ?>
+                <?php if (!empty($jasa['gambar_portofolio'])): ?>
 
                     <div class="portfolio-list">
                         <img
-                            src="../../<?= e($jasa['gambar']) ?>"
+                            src="../../<?= e($jasa['gambar_portofolio']) ?>"
                             alt="Portofolio <?= e($jasa['nama_jasa']) ?>"
                         >
                     </div>

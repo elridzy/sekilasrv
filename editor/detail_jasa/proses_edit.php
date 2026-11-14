@@ -99,7 +99,7 @@ if (
 $harga_db = (int) $harga_normal;
 
 $stmt = $pdo->prepare("
-    SELECT id_detail_jasa, gambar
+    SELECT id_detail_jasa, gambar_portofolio
     FROM detail_jasa
     WHERE id_detail_jasa = ?
     AND id_editor = ?
@@ -118,7 +118,7 @@ if (!$jasa) {
     die('Data jasa tidak ditemukan.');
 }
 
-$gambar_lama = $jasa['gambar'];
+$gambar_lama = $jasa['gambar_portofolio'];
 
 $ada_gambar_baru = (
     isset($_FILES['gambar']) &&
@@ -204,8 +204,6 @@ if ($ada_gambar_baru) {
     $path_database = $folder_database . $nama_baru;
 }
 
-$gambar_berhasil = false;
-
 try {
 
     $pdo->beginTransaction();
@@ -221,9 +219,9 @@ try {
     $stmt = $pdo->prepare("
         UPDATE detail_jasa
         SET nama_jasa = ?,
-            deskripsi = ?,
-            harga = ?,
-            gambar = ?
+            deskripsi_jasa = ?,
+            harga_jasa = ?,
+            gambar_portofolio = ?
         WHERE id_detail_jasa = ?
         AND id_editor = ?
         AND id_kategori_jasa = ?

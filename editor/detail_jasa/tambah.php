@@ -137,12 +137,12 @@ unset($_SESSION['error_jasa'], $_SESSION['old_jasa']);
                         type="file"
                         id="gambar"
                         name="gambar"
-                        accept=".jpg,.jpeg,.png,image/jpeg,image/png"
+                        accept=".jpeg,.png,image/jpeg,image/png"
                         required
                     >
 
                     <small>
-                        Format JPG, JPEG, dan PNG. Maksimal 5 MB.
+                        Format JPEG dan PNG. Maksimal 5 MB.
                     </small>
                 </div>
 

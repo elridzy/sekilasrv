@@ -33,9 +33,9 @@ $stmt = $pdo->prepare("
     SELECT
         id_detail_jasa,
         nama_jasa,
-        deskripsi,
-        harga,
-        gambar,
+        deskripsi_jasa,
+        harga_jasa,
+        gambar_portofolio,
         tanggal_upload
     FROM detail_jasa
     WHERE id_kategori_jasa = ?
@@ -90,11 +90,11 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <div class="portfolio-section">
                             <h4>Portofolio</h4>
 
-                            <?php if (!empty($jasa['gambar'])): ?>
+                            <?php if (!empty($jasa['gambar_portofolio'])): ?>
 
                                 <div class="portfolio-list">
                                     <img
-                                        src="../../<?= e($jasa['gambar']) ?>"
+                                        src="../../<?= e($jasa['gambar_portofolio']) ?>"
                                         alt="Portofolio <?= e($jasa['nama_jasa']) ?>"
                                     >
                                 </div>
@@ -117,14 +117,14 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                             <p>
                                 <strong>Deskripsi:</strong><br>
-                                <?= nl2br(e($jasa['deskripsi'])) ?>
+                                <?= nl2br(e($jasa['deskripsi_jasa'])) ?>
                             </p>
 
                             <p>
                                 <strong>Harga:</strong><br>
                                 <span class="price">
                                     Rp<?= number_format(
-                                        (float) $jasa['harga'],
+                                        (float) $jasa['harga_jasa'],
                                         0,
                                         ',',
                                         '.'
