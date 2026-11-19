@@ -39,7 +39,7 @@ try {
                     <h1 class="title">Kategori Jasa</h1>
 
                     <p class="subtitle">
-                        Pilih kategori jasa untuk melihat portofolio editor.
+                        Silakan pilih kategori jasa.
                     </p>
                 </div>
 
@@ -77,7 +77,7 @@ try {
                                     href="detail_jasa.php?id_kategori_jasa=<?= (int) $kategori['id_kategori_jasa'] ?>"
                                     class="detail-btn"
                                 >
-                                    Lihat Jasa
+                                    Lihat Detail Jasa
                                 </a>
 
                             </div>

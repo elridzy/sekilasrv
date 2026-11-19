@@ -19,11 +19,11 @@
 
             <div class="button-group">
                 <a href="../customer/informasi/kategori_jasa.php" class="role-btn">
-                    <div class="icon-wrapper">🛍️</div>
+                    <div class="icon-wrapper">🔍</div>
 
                     <div class="btn-text">
                         <span class="btn-label">Customer</span>
-                        <span class="btn-sub">Lihat portofolio editor</span>
+                        <span class="btn-sub">Lihat Jasa</span>
                     </div>
                 </a>
 
@@ -32,7 +32,7 @@
 
                     <div class="btn-text">
                         <span class="btn-label">Editor</span>
-                        <span class="btn-sub">Kelola jasa</span>
+                        <span class="btn-sub">Kelola Jasa</span>
                     </div>
                 </a>
             </div>

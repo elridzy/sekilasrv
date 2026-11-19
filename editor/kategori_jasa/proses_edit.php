@@ -9,7 +9,7 @@ if (!isset($_SESSION['editor']) || !isset($_SESSION['id_editor'])) {
 require_once '../../database/koneksi.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: tambah.php');
+    header('Location: tambah_edit.php');
     exit;
 }
 
@@ -27,7 +27,7 @@ if (
     $namaKategori === '' ||
     mb_strlen($namaKategori) > 100
 ) {
-    header('Location: tambah.php?pesan=gagal');
+    header('Location: tambah_edit.php?pesan=gagal');
     exit;
 }
 
@@ -55,14 +55,14 @@ try {
         ]);
 
         if (!$cek->fetch()) {
-            header('Location: tambah.php?pesan=gagal');
+            header('Location: tambah_edit.php?pesan=gagal');
             exit;
         }
     }
 
-    header('Location: tambah.php?pesan=diedit');
+    header('Location: tambah_edit.php?pesan=diedit');
     exit;
 } catch (PDOException $e) {
-    header('Location: tambah.php?pesan=gagal');
+    header('Location: tambah_edit.php?pesan=gagal');
     exit;
 }

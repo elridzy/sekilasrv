@@ -54,7 +54,7 @@ body {
 
 /* bagian header kartu */
 .card-header {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 /* judul halaman */
@@ -63,6 +63,14 @@ body {
     color: white;
     font-size: 26px;
     font-weight: 600;
+}
+
+/* judul form */
+.form-title {
+    margin-bottom: 12px;
+    color: #A0A5B1;
+    font-size: 15px;
+    font-weight: 500;
 }
 
 /* pengaturan dasar tombol dan link */
@@ -75,7 +83,16 @@ a {
     transition: background-color 0.2s, color 0.2s;
 }
 
-/* tombol cek halaman customer */
+/* posisi tombol customer dan logout */
+.top-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* tombol cek halaman customer dan batal edit */
 .back-btn {
     display: table;
     margin: 0 0 15px;
@@ -86,10 +103,9 @@ a {
     border-radius: 7px;
     text-align: center;
     outline: none;
-    transition: background-color 0.2s, border-color 0.2s;
 }
 
-/* efek hover, fokus, dan aktif tombol customer */
+/* efek hover tombol */
 .back-btn:hover,
 .back-btn:focus,
 .back-btn:active {
@@ -98,24 +114,38 @@ a {
     outline: none;
 }
 
+/* tombol logout */
+.logout-btn {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 10px 16px;
+    background: #D93636;
+    color: white;
+    border: 1px solid #D93636;
+    border-radius: 7px;
+    text-align: center;
+}
+
+/* efek hover tombol logout */
+.logout-btn:hover {
+    background: #B92727;
+    border-color: #B92727;
+}
+
 /* kelompok input form */
 .form-group {
     display: flex;
-    flex-direction: column;
+    align-items: stretch;
     gap: 10px;
+    width: 100%;
     margin-bottom: 20px;
-}
-
-/* label input form */
-.form-group label {
-    color: #E5E7EB;
-    font-size: 14px;
-    font-weight: 500;
 }
 
 /* desain kolom input */
 .form-group input {
-    width: 100%;
+    flex: 1 1 0;
+    min-width: 0;
+    width: 0;
     padding: 12px 14px;
     background: #22262F;
     border: 1px solid #383D49;
@@ -132,20 +162,23 @@ a {
     color: #777E8B;
 }
 
-/* efek fokus pada kolom input */
+/* efek fokus kolom input */
 .form-group input:focus {
     border-color: #1877F2;
 }
 
 /* desain tombol submit */
 .submit-btn {
-    width: 100%;
-    padding: 12px 16px;
+    flex: 1 1 0;
+    min-width: 0;
+    width: 0;
+    padding: 12px 10px;
     background: #1877F2;
     border: none;
     border-radius: 7px;
     color: white;
     font-weight: normal;
+    white-space: nowrap;
 }
 
 /* efek hover tombol submit */
@@ -307,60 +340,45 @@ a:focus-visible {
     outline-offset: 3px;
 }
 
-/* responsive: smartphone */
-@media (max-width: 600px) {
-    .hero-container {
-        padding: 20px 12px;
-    }
-
-    .role-card {
-        padding: 25px 16px;
-    }
-
-    .title {
-        font-size: 27px;
-    }
-
-    .subtitle {
-        font-size: 13px;
-    }
-
-    .button-group {
-        flex-direction: column;
-    }
-
-    .role-btn {
-        padding: 16px;
-    }
-
-    .icon-wrapper {
-        width: 48px;
-        height: 48px;
-        font-size: 21px;
+/* responsive: tablet */
+@media (max-width: 900px) {
+    .page-container {
+        padding: 30px 20px;
     }
 }
 
-/* responsive: tablet */
-@media (max-width: 900px) {
-    .hero-container {
-        padding: 20px;
+/* responsive: smartphone */
+@media (max-width: 600px) {
+    .page-container {
+        padding: 20px 12px;
     }
 
-    .role-card {
-        max-width: 600px;
-        padding: 32px;
+    .category-card {
+        padding: 22px 16px;
     }
 
     .title {
-        font-size: 30px;
+        font-size: 23px;
     }
 
-    .button-group {
+    .category-item {
+        align-items: flex-start;
+        flex-direction: column;
         gap: 12px;
     }
 
-    .role-btn {
-        padding: 16px;
-        gap: 12px;
+    .category-actions {
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    .form-group {
+        gap: 8px;
+    }
+
+    .form-group input,
+    .submit-btn {
+        padding: 11px 8px;
+        font-size: 13px;
     }
 }

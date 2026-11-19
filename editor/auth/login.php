@@ -1,8 +1,5 @@
 <?php
 session_start();
-
-$error = $_SESSION['error'] ?? '';
-unset($_SESSION['error']);
 ?>
 
 <!DOCTYPE html>
@@ -25,13 +22,9 @@ unset($_SESSION['error']);
                     Login untuk mengelola jasa.
                 </p>
 
-                <?php if ($error !== ''): ?>
-                    <div class="error-message">
-                        <?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8') ?>
-                    </div>
-                <?php endif; ?>
+                <div class="error-message" id="pesan-error" style="display: none;"></div>
 
-                <form action="proses_login.php" method="POST">
+                <form id="form-login" action="proses_login.php" method="POST">
                     <div class="form-group">
                         <input
                             type="text"
@@ -54,13 +47,51 @@ unset($_SESSION['error']);
                         >
                     </div>
 
-                    <button type="submit" class="login-btn">
+                    <button type="submit" class="login-btn" id="tombol-login">
                         Login
                     </button>
                 </form>
             </div>
         </div>
     </div>
+
+    <script>
+        const formLogin = document.getElementById('form-login');
+        const pesanError = document.getElementById('pesan-error');
+        const tombolLogin = document.getElementById('tombol-login');
+
+        formLogin.addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            pesanError.style.display = 'none';
+            tombolLogin.disabled = true;
+            tombolLogin.textContent = 'Memproses...';
+
+            try {
+                const response = await fetch('proses_login.php', {
+                    method: 'POST',
+                    body: new FormData(formLogin)
+                });
+
+                const hasil = await response.json();
+
+                if (hasil.status === 'berhasil') {
+                    window.location.href = hasil.redirect;
+                    return;
+                }
+
+                pesanError.textContent = hasil.pesan;
+                pesanError.style.display = 'table';
+
+            } catch (error) {
+                pesanError.textContent = 'Terjadi kesalahan. Silakan coba lagi.';
+                pesanError.style.display = 'table';
+            }
+
+            tombolLogin.disabled = false;
+            tombolLogin.textContent = 'Login';
+        });
+    </script>
 </body>
 
 </html>

@@ -1,8 +1,16 @@
 <?php
 session_start();
 
+header('Content-Type: application/json');
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: login.php');
+    http_response_code(405);
+
+    echo json_encode([
+        'status' => 'gagal',
+        'pesan' => 'Metode permintaan tidak diizinkan.'
+    ]);
+
     exit;
 }
 
@@ -33,11 +41,17 @@ if (
     $_SESSION['editor'] = $editor['username'];
     $_SESSION['id_editor'] = $editor['id_editor'];
 
-    header('Location: ../kategori_jasa/tambah.php');
+    echo json_encode([
+        'status' => 'berhasil',
+        'redirect' => '../kategori_jasa/tambah_edit.php'
+    ]);
+
     exit;
 }
 
-$_SESSION['error'] = 'username atau password salah.';
+echo json_encode([
+    'status' => 'gagal',
+    'pesan' => 'username atau password salah.'
+]);
 
-header('Location: login.php');
 exit;

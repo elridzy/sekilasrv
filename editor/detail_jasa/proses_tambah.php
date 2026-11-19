@@ -173,9 +173,9 @@ $ekstensi_asli = strtolower(
     pathinfo($_FILES['gambar']['name'], PATHINFO_EXTENSION)
 );
 
-if (!in_array($ekstensi_asli, ['jpeg', 'png'], true)) {
+if (!in_array($ekstensi_asli, ['jpg', 'jpeg', 'png'], true)) {
     kembaliDenganError(
-        'Format gambar hanya boleh JPEG dan PNG.',
+        'Format gambar hanya boleh JPG, JPEG, dan PNG.',
         $id_kategori_jasa,
         $old
     );
@@ -185,22 +185,22 @@ $finfo = new finfo(FILEINFO_MIME_TYPE);
 $mime = $finfo->file($tmp_file);
 
 $format = [
-    'image/jpeg' => 'jpeg',
-    'image/png' => 'png'
+    'image/jpeg' => ['jpg', 'jpeg'],
+    'image/png' => ['png']
 ];
 
 if (
     !isset($format[$mime]) ||
-    $format[$mime] !== $ekstensi_asli
+    !in_array($ekstensi_asli, $format[$mime], true)
 ) {
     kembaliDenganError(
-        'Format gambar tidak sesuai. Gunakan JPEG atau PNG.',
+        'Format gambar tidak sesuai. Gunakan JPG, JPEG, atau PNG.',
         $id_kategori_jasa,
         $old
     );
 }
 
-$ekstensi = $format[$mime];
+$ekstensi = $ekstensi_asli;
 $nama_baru = bin2hex(random_bytes(16)) . '.' . $ekstensi;
 
 $tujuan = $folder_upload . $nama_baru;

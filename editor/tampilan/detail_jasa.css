@@ -28,29 +28,37 @@ body {
 /* header halaman */
 .page-header {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    width: 100%;
     margin-bottom: 25px;
 }
 
 .page-header h1 {
     font-size: 24px;
-    margin-bottom: 6px;
+    margin-bottom: 10px;
+}
+
+.header-info {
+    display: flex;
+    align-items: center;
+    width: 100%;
 }
 
 .page-header p {
-    color: #AAB0BC;
-    font-size: 13px;
+    color: #A0A5B1;
+    font-size: 16px;
     line-height: 1.5;
 }
 
-/* header aksi dan judul data jasa */
+/* header aksi */
 .action-header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: max-content 240px max-content max-content;
+    justify-content: space-between;
+    align-items: end;
+    gap: 15px;
+    width: 100%;
     margin-bottom: 18px;
-    flex-wrap: wrap;
 }
 
 .action-header h2 {
@@ -59,42 +67,19 @@ body {
 }
 
 .action-header p {
-    color: #AAB0BC;
+    color: #A0A5B1;
     font-size: 13px;
     line-height: 1.5;
 }
 
-/* posisi tombol di header */
-.header-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-/* tombol tambah portofolio */
-.add-btn {
-    display: inline-block;
-    text-decoration: none;
-    background: #1877F2;
-    color: #FFFFFF;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 13px;
-    font-weight: normal;
-    white-space: nowrap;
-    flex-shrink: 0;
-}
-
-.add-btn:hover {
-    background: #0866D6;
-}
-
 /* tombol cek halaman customer */
 .customer-btn {
-    display: table;
-    margin: 0;
-    padding: 10px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    min-width: 0;
+    padding: 10px 8px;
     background: #22262F;
     color: #FFFFFF;
     border: 1px solid #383D49;
@@ -107,7 +92,6 @@ body {
     white-space: nowrap;
     cursor: pointer;
     outline: none;
-    flex-shrink: 0;
     transition: background-color 0.2s, border-color 0.2s;
 }
 
@@ -119,23 +103,135 @@ body {
     outline: none;
 }
 
+/* tombol tambah portofolio */
+.add-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    min-width: 0;
+    padding: 10px 8px;
+    text-decoration: none;
+    background: #1877F2;
+    color: #FFFFFF;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.add-btn:hover {
+    background: #0866D6;
+}
+
+/* input nomor whatsapp */
+.whatsapp-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    width: 240px;
+    min-width: 0;
+    margin: 0;
+}
+
+.whatsapp-form label {
+    display: block;
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.whatsapp-input {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    min-width: 0;
+}
+
+.whatsapp-form input[type="hidden"] {
+    display: none;
+}
+
+.whatsapp-form input[type="tel"] {
+    flex: 1;
+    width: 0;
+    min-width: 0;
+    padding: 10px 8px;
+    background: #22262F;
+    color: #FFFFFF;
+    border: 1px solid #383D49;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 12px;
+    outline: none;
+}
+
+.whatsapp-form input[type="tel"]:focus {
+    border-color: #1877F2;
+}
+
+.whatsapp-btn {
+    flex-shrink: 0;
+    padding: 10px 10px;
+    background: #00AA13;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.whatsapp-btn:hover {
+    background: #008F10;
+}
+
+/* tombol logout */
+.logout-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    min-width: 0;
+    padding: 10px 8px;
+    background: #D93636;
+    color: #FFFFFF;
+    border: 1px solid #D93636;
+    border-radius: 7px;
+    font-size: 13px;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.logout-btn:hover {
+    background: #B92727;
+    border-color: #B92727;
+}
+
 /* tampilan ketika data jasa kosong */
 .empty-message {
     width: 100%;
-    text-align: center;
-    padding: 45px 20px;
+    padding: 35px 20px;
     background: #1E222B;
-    border: 1px solid #383D49;
-    border-radius: 7px;
+    border: 1px solid #303642;
+    border-radius: 8px;
+    text-align: center;
 }
 
 .empty-message h3 {
+    color: #A0A5B1;
     font-size: 18px;
-    margin-bottom: 9px;
+    font-weight: normal;
 }
 
 .empty-message p {
-    color: #AAB0BC;
+    color: #A0A5B1;
     font-size: 13px;
     line-height: 1.5;
 }
@@ -170,9 +266,11 @@ body {
     margin-bottom: 10px;
 }
 
+/* tulisan ketika portofolio belum tersedia */
 .portfolio-section p {
-    color: #AAB0BC;
+    color: #A0A5B1;
     font-size: 13px;
+    line-height: 1.5;
 }
 
 /* daftar gambar portofolio */
@@ -186,9 +284,9 @@ body {
 .portfolio-list img {
     display: block;
     width: 100%;
-    height: 150px;
-    max-width: 100%;
-    object-fit: cover;
+    height: 180px;
+    object-fit: contain;
+    background: #171A21;
     border-radius: 5px;
     border: 1px solid #383D49;
 }
@@ -286,8 +384,8 @@ body {
 }
 
 .form-header p {
-    color: #AAB0BC;
-    font-size: 13px;
+    color: #A0A5B1;
+    font-size: 14px;
     line-height: 1.5;
 }
 
@@ -337,7 +435,7 @@ body {
     padding: 9px;
     cursor: pointer;
     background: #22262F;
-    color: #AAB0BC;
+    color: #A0A5B1;
 }
 
 /* desain tombol choose file */
@@ -362,7 +460,7 @@ body {
 
 /* keterangan kecil di bawah input */
 .form-group small {
-    color: #AAB0BC;
+    color: #A0A5B1;
     font-size: 11px;
     line-height: 1.5;
 }
@@ -370,6 +468,88 @@ body {
 /* jarak gambar portofolio di form */
 .form-group .portfolio-list {
     margin-top: 4px;
+}
+
+/* gambar preview pada form tambah dan edit */
+.preview-image {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    height: 220px;
+    object-fit: contain;
+    background: #171A21;
+    border-radius: 5px;
+    border: 1px solid #383D49;
+    cursor: pointer;
+}
+
+.preview-image:hover {
+    opacity: 0.85;
+}
+
+/* tampilan preview gambar */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+/* pembungkus gambar dan tombol exit */
+.lightbox-content {
+    position: relative;
+    display: inline-block;
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
+/* gambar ukuran penuh */
+.lightbox-content img {
+    display: block;
+    max-width: 90vw;
+    max-height: 85vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* tombol exit gambar */
+.lightbox-close {
+    appearance: none;
+    -webkit-appearance: none;
+    position: absolute;
+    top: 0;
+    right: -45px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #22262F;
+    color: #FFFFFF;
+    border: 1px solid #383D49;
+    border-radius: 50%;
+    font-size: 25px;
+    cursor: pointer;
+    z-index: 1;
+    outline: none;
+    box-shadow: none;
+    transition: border-color 0.2s;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus,
+.lightbox-close:active {
+    background: #22262F;
+    color: #FFFFFF;
+    border-color: #1877F2;
+    outline: none;
+    box-shadow: none;
 }
 
 /* posisi tombol simpan form */
@@ -424,60 +604,80 @@ body {
     color: #FF9CA5;
 }
 
-/* responsive: smartphone */
-@media (max-width: 600px) {
-    .hero-container {
-        padding: 20px 12px;
-    }
-
-    .role-card {
-        padding: 25px 16px;
-    }
-
-    .title {
-        font-size: 27px;
-    }
-
-    .subtitle {
-        font-size: 13px;
-    }
-
-    .button-group {
-        flex-direction: column;
-    }
-
-    .role-btn {
-        padding: 16px;
-    }
-
-    .icon-wrapper {
-        width: 48px;
-        height: 48px;
-        font-size: 21px;
+/* responsive: tablet */
+@media (max-width: 900px) {
+    .service-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
-/* responsive: tablet */
-@media (max-width: 900px) {
-    .hero-container {
-        padding: 20px;
+/* responsive: layar kecil */
+@media (max-width: 700px) {
+    .action-header {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
     }
 
-    .role-card {
-        max-width: 600px;
-        padding: 32px;
+    .action-header > * {
+        width: 100%;
     }
 
-    .title {
-        font-size: 30px;
+    .whatsapp-form {
+        width: 100%;
+    }
+}
+
+/* responsive: smartphone */
+@media (max-width: 600px) {
+    .container {
+        width: calc(100% - 24px);
+        padding: 20px 0;
     }
 
-    .button-group {
-        gap: 12px;
+    .page-header h1 {
+        font-size: 22px;
     }
 
-    .role-btn {
+    .action-header {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .service-list {
+        grid-template-columns: 1fr;
+    }
+
+    .service-card {
         padding: 16px;
-        gap: 12px;
+    }
+
+    .form-card {
+        padding: 20px 16px;
+    }
+
+    .form-header h1 {
+        font-size: 21px;
+    }
+
+    .preview-image {
+        max-width: 100%;
+    }
+
+    .lightbox {
+        padding: 15px 55px 15px 15px;
+    }
+
+    .lightbox-content {
+        max-width: 100%;
+    }
+
+    .lightbox-content img {
+        max-width: 100%;
+        max-height: 85vh;
+    }
+
+    .lightbox-close {
+        top: 0;
+        right: -40px;
     }
 }

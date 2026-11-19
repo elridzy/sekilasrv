@@ -49,7 +49,7 @@ unset($_SESSION['error_jasa'], $_SESSION['old_jasa']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Tambah Portofolio Editor</title>
+    <title>Tambah Portofolio</title>
 
     <link rel="stylesheet" href="../tampilan/detail_jasa.css">
 </head>
@@ -88,6 +88,31 @@ unset($_SESSION['error_jasa'], $_SESSION['old_jasa']);
                     name="csrf_token"
                     value="<?= e($_SESSION['csrf_token']) ?>"
                 >
+
+                <div class="form-group">
+                    <label for="gambar">Gambar Portofolio</label>
+
+                    <input
+                        type="file"
+                        id="gambar"
+                        name="gambar"
+                        accept=".jpg,.jpeg,.png,image/jpeg,image/png"
+                        required
+                    >
+
+                    <small>
+                        Format JPG, JPEG, dan PNG. Maksimal 5 MB.
+                    </small>
+
+                    <div class="portfolio-list" id="preview-container" style="display: none;">
+                        <img
+                            src=""
+                            alt="Preview Portofolio"
+                            id="preview-image"
+                            class="preview-image"
+                        >
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <label for="nama_jasa">Nama Jasa</label>
@@ -130,22 +155,6 @@ unset($_SESSION['error_jasa'], $_SESSION['old_jasa']);
                     >
                 </div>
 
-                <div class="form-group">
-                    <label for="gambar">Gambar Portofolio</label>
-
-                    <input
-                        type="file"
-                        id="gambar"
-                        name="gambar"
-                        accept=".jpeg,.png,image/jpeg,image/png"
-                        required
-                    >
-
-                    <small>
-                        Format JPEG dan PNG. Maksimal 5 MB.
-                    </small>
-                </div>
-
                 <div class="form-actions">
 
                     <button type="submit" class="submit-btn">
@@ -160,7 +169,76 @@ unset($_SESSION['error_jasa'], $_SESSION['old_jasa']);
 
     </div>
 
+    <!-- preview gambar -->
+    <div class="lightbox" id="lightbox" onclick="tutupGambar()">
+
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+
+            <button
+                type="button"
+                class="lightbox-close"
+                onclick="tutupGambar()"
+                aria-label="Tutup preview"
+            >
+                &times;
+            </button>
+
+            <img
+                id="gambar-penuh"
+                src=""
+                alt="Gambar Portofolio"
+            >
+
+        </div>
+
+    </div>
+
     <script>
+        const inputGambar = document.getElementById('gambar');
+        const previewContainer = document.getElementById('preview-container');
+        const previewImage = document.getElementById('preview-image');
+
+        let urlGambar = null;
+
+        inputGambar.addEventListener('change', function() {
+            const file = this.files[0];
+
+            if (!file) {
+                previewContainer.style.display = 'none';
+                previewImage.src = '';
+                return;
+            }
+
+            if (urlGambar) {
+                URL.revokeObjectURL(urlGambar);
+            }
+
+            urlGambar = URL.createObjectURL(file);
+
+            previewImage.src = urlGambar;
+            previewContainer.style.display = 'flex';
+        });
+
+        previewImage.addEventListener('click', function() {
+            bukaGambar(this.src);
+        });
+
+        function bukaGambar(src) {
+            document.getElementById('gambar-penuh').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function tutupGambar() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.getElementById('gambar-penuh').src = '';
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                tutupGambar();
+            }
+        });
+
         const pesan = document.getElementById('pesan');
 
         if (pesan) {
