@@ -29,25 +29,6 @@ body {
     max-width: 500px;
 }
 
-/* desain tombol kembali */
-.back-btn {
-    display: table;
-    margin-bottom: 15px;
-    padding: 10px 16px;
-    background: #22262F;
-    color: #FFFFFF;
-    border: 1px solid #383D49;
-    border-radius: 7px;
-    font-size: 13px;
-    text-decoration: none;
-    transition: background-color 0.2s, border-color 0.2s;
-}
-
-/* efek hover tombol kembali */
-.back-btn:hover {
-    border-color: #1877F2;
-}
-
 /* desain kartu kategori */
 .category-card {
     width: 100%;
@@ -115,7 +96,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 10px 12px;
-    background: #00AA13;
+    background: #1877F2;
     color: #FFFFFF;
     border-radius: 6px;
     font-size: 12px;
@@ -127,7 +108,7 @@ body {
 
 /* efek hover tombol lihat jasa */
 .detail-btn:hover {
-    background: #008F10;
+    background: #0F65D4;
 }
 
 /* desain pesan informasi */
@@ -161,58 +142,29 @@ a:focus-visible {
 
 /* responsive: smartphone */
 @media (max-width: 600px) {
-    .hero-container {
+    .page-container {
         padding: 20px 12px;
     }
 
-    .role-card {
-        padding: 25px 16px;
+    .category-card {
+        padding: 20px 16px;
     }
 
     .title {
-        font-size: 27px;
+        font-size: 23px;
     }
 
     .subtitle {
         font-size: 13px;
     }
 
-    .button-group {
+    .category-item {
+        align-items: flex-start;
         flex-direction: column;
-    }
-
-    .role-btn {
-        padding: 16px;
-    }
-
-    .icon-wrapper {
-        width: 48px;
-        height: 48px;
-        font-size: 21px;
-    }
-}
-
-/* responsive: tablet */
-@media (max-width: 900px) {
-    .hero-container {
-        padding: 20px;
-    }
-
-    .role-card {
-        max-width: 600px;
-        padding: 32px;
-    }
-
-    .title {
-        font-size: 30px;
-    }
-
-    .button-group {
         gap: 12px;
     }
 
-    .role-btn {
-        padding: 16px;
-        gap: 12px;
+    .detail-btn {
+        width: 100%;
     }
 }

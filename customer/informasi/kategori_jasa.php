@@ -13,6 +13,11 @@ try {
     $kategori_jasa = [];
     $error = true;
 }
+
+function e($nilai)
+{
+    return htmlspecialchars((string) $nilai, ENT_QUOTES, 'UTF-8');
+}
 ?>
 
 <!DOCTYPE html>
@@ -65,11 +70,7 @@ try {
 
                                 <div class="category-info">
                                     <h2 class="category-name">
-                                        <?= htmlspecialchars(
-                                            $kategori['nama_kategori'],
-                                            ENT_QUOTES,
-                                            'UTF-8'
-                                        ) ?>
+                                        <?= e($kategori['nama_kategori']) ?>
                                     </h2>
                                 </div>
 

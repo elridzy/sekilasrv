@@ -94,14 +94,16 @@ body {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 15px;
     width: 100%;
-    align-items: start;
+    align-items: stretch;
 }
 
 /* desain kartu jasa */
 .service-card {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     min-width: 0;
-    height: fit-content;
+    height: 100%;
     background: #1E222B;
     border: 1px solid #383D49;
     border-radius: 7px;
@@ -167,6 +169,7 @@ body {
 .service-info {
     display: flex;
     flex-direction: column;
+    flex: 1;
     gap: 12px;
     color: #D5D9E1;
     line-height: 1.6;

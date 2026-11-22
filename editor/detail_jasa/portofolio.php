@@ -119,7 +119,7 @@ $pesan = $_GET['pesan'] ?? '';
 
         <div class="page-header">
 
-            <h1>Kelola Portofolio Editor</h1>
+            <h1>Kelola Detail Jasa</h1>
 
             <div class="header-info">
                 <p>Kategori: <?= e($kategori['nama_kategori']) ?></p>
@@ -152,7 +152,7 @@ $pesan = $_GET['pesan'] ?? '';
                         type="tel"
                         id="no_wa"
                         name="no_wa"
-                        placeholder="Masukkan nomor wa anda"
+                        placeholder="Masukkan nomor wa anda."
                         value="<?= e($editor['no_wa'] ?? '') ?>"
                         pattern="\+?[0-9]{8,15}"
                         maxlength="16"
@@ -217,7 +217,7 @@ $pesan = $_GET['pesan'] ?? '';
         <?php if (empty($data_jasa)): ?>
 
             <div class="empty-message">
-                <h3>Belum ada portofolio yang tersedia.</h3>
+                <h3>Belum ada detail jasa yang tersedia.</h3>
             </div>
 
         <?php else: ?>
@@ -255,19 +255,23 @@ $pesan = $_GET['pesan'] ?? '';
 
                         <div class="service-info">
 
-                            <p>
-                                <strong>Deskripsi:</strong><br>
-                                <?= nl2br(e($jasa['deskripsi_jasa'])) ?>
-                            </p>
+                            <?php if (!empty(trim($jasa['deskripsi_jasa'] ?? ''))): ?>
+
+                                <p>
+                                    <strong>Deskripsi Jasa:</strong><br>
+                                    <?= nl2br(e($jasa['deskripsi_jasa'])) ?>
+                                </p>
+
+                            <?php endif; ?>
 
                             <p>
-                                <strong>Harga:</strong><br>
-                                Rp<?= number_format((float) $jasa['harga_jasa'], 0, ',', '.') ?>
+                                <strong>Harga Jasa:</strong><br>
+                                Rp <?= number_format((float) $jasa['harga_jasa'], 0, ',', '.') ?>
                             </p>
 
                             <p>
                                 <strong>Tanggal Upload:</strong><br>
-                                <?= e($jasa['tanggal_upload']) ?>
+                                <?= e(date('d-m-Y', strtotime($jasa['tanggal_upload']))) ?>
                             </p>
 
                         </div>
@@ -326,15 +330,6 @@ $pesan = $_GET['pesan'] ?? '';
     <div class="lightbox" id="lightbox" onclick="tutupGambar()">
 
         <div class="lightbox-content" onclick="event.stopPropagation()">
-
-            <button
-                type="button"
-                class="lightbox-close"
-                onclick="tutupGambar()"
-                aria-label="Tutup preview"
-            >
-                &times;
-            </button>
 
             <img
                 src=""

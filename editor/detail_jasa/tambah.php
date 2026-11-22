@@ -71,11 +71,7 @@ unset($_SESSION['error_jasa'], $_SESSION['old_jasa']);
                 </div>
             <?php endif; ?>
 
-            <form
-                action="proses_tambah.php"
-                method="POST"
-                enctype="multipart/form-data"
-            >
+            <form action="proses_tambah.php" method="POST" enctype="multipart/form-data">
 
                 <input
                     type="hidden"
@@ -89,78 +85,83 @@ unset($_SESSION['error_jasa'], $_SESSION['old_jasa']);
                     value="<?= e($_SESSION['csrf_token']) ?>"
                 >
 
-                <div class="form-group">
-                    <label for="gambar">Gambar Portofolio</label>
+                <div class="form-top-row">
 
-                    <input
-                        type="file"
-                        id="gambar"
-                        name="gambar"
-                        accept=".jpg,.jpeg,.png,image/jpeg,image/png"
-                        required
+                    <div class="form-group upload-group">
+
+                        <label for="gambar" class="upload-btn">
+                            Gambar Portofolio
+                        </label>
+
+                        <input
+                            type="file"
+                            id="gambar"
+                            name="gambar"
+                            accept=".jpg,.jpeg,.png,image/jpeg,image/png"
+                            required
+                            hidden
+                        >
+
+                    </div>
+
+                </div>
+
+                <small class="upload-info">
+                    Format JPG, JPEG, dan PNG. Maksimal 5 MB.
+                </small>
+
+                <div class="portfolio-list" id="preview-container" style="display: none;">
+                    <img
+                        src=""
+                        alt="Preview Portofolio"
+                        id="preview-image"
+                        class="preview-image"
                     >
+                </div>
 
-                    <small>
-                        Format JPG, JPEG, dan PNG. Maksimal 5 MB.
-                    </small>
+                <div class="form-row">
 
-                    <div class="portfolio-list" id="preview-container" style="display: none;">
-                        <img
-                            src=""
-                            alt="Preview Portofolio"
-                            id="preview-image"
-                            class="preview-image"
+                    <div class="form-group">
+                        <input
+                            type="text"
+                            id="nama_jasa"
+                            name="nama_jasa"
+                            maxlength="100"
+                            value="<?= e($old['nama_jasa'] ?? '') ?>"
+                            placeholder="Nama Jasa"
+                            required
                         >
                     </div>
+
+                    <div class="form-group">
+                        <input
+                            type="number"
+                            id="harga"
+                            name="harga"
+                            min="0"
+                            max="2147483647"
+                            step="1"
+                            value="<?= e($old['harga'] ?? '') ?>"
+                            placeholder="Harga Jasa"
+                            required
+                        >
+                    </div>
+
                 </div>
 
                 <div class="form-group">
-                    <label for="nama_jasa">Nama Jasa</label>
-
-                    <input
-                        type="text"
-                        id="nama_jasa"
-                        name="nama_jasa"
-                        maxlength="100"
-                        value="<?= e($old['nama_jasa'] ?? '') ?>"
-                        placeholder="Masukkan nama jasa"
-                        required
-                    >
-                </div>
-
-                <div class="form-group">
-                    <label for="deskripsi">Deskripsi Jasa</label>
-
                     <textarea
                         id="deskripsi"
                         name="deskripsi"
                         rows="5"
-                        placeholder="Tambahkan deskripsi jasa"
+                        placeholder="Deskripsi Jasa (Opsional)"
                     ><?= e($old['deskripsi'] ?? '') ?></textarea>
                 </div>
 
-                <div class="form-group">
-                    <label for="harga">Harga Jasa</label>
-
-                    <input
-                        type="number"
-                        id="harga"
-                        name="harga"
-                        min="0"
-                        max="2147483647"
-                        step="1"
-                        value="<?= e($old['harga'] ?? '') ?>"
-                        placeholder="Masukkan harga jasa"
-                        required
-                    >
-                </div>
-
                 <div class="form-actions">
-
                     <button type="submit" class="submit-btn">
                         Simpan Portofolio
                     </button>
-
                 </div>
 
             </form>
@@ -169,19 +170,9 @@ unset($_SESSION['error_jasa'], $_SESSION['old_jasa']);
 
     </div>
 
-    <!-- preview gambar -->
     <div class="lightbox" id="lightbox" onclick="tutupGambar()">
 
         <div class="lightbox-content" onclick="event.stopPropagation()">
-
-            <button
-                type="button"
-                class="lightbox-close"
-                onclick="tutupGambar()"
-                aria-label="Tutup preview"
-            >
-                &times;
-            </button>
 
             <img
                 id="gambar-penuh"
@@ -203,14 +194,15 @@ unset($_SESSION['error_jasa'], $_SESSION['old_jasa']);
         inputGambar.addEventListener('change', function() {
             const file = this.files[0];
 
+            if (urlGambar) {
+                URL.revokeObjectURL(urlGambar);
+                urlGambar = null;
+            }
+
             if (!file) {
                 previewContainer.style.display = 'none';
                 previewImage.src = '';
                 return;
-            }
-
-            if (urlGambar) {
-                URL.revokeObjectURL(urlGambar);
             }
 
             urlGambar = URL.createObjectURL(file);
@@ -246,6 +238,12 @@ unset($_SESSION['error_jasa'], $_SESSION['old_jasa']);
                 pesan.style.display = 'none';
             }, 3000);
         }
+
+        window.addEventListener('beforeunload', function() {
+            if (urlGambar) {
+                URL.revokeObjectURL(urlGambar);
+            }
+        });
     </script>
 
 </body>

@@ -78,11 +78,7 @@ $gambar_awal = !empty($jasa['gambar_portofolio'])
                 </div>
             <?php endif; ?>
 
-            <form
-                action="proses_edit.php"
-                method="POST"
-                enctype="multipart/form-data"
-            >
+            <form action="proses_edit.php" method="POST" enctype="multipart/form-data">
 
                 <input
                     type="hidden"
@@ -102,8 +98,31 @@ $gambar_awal = !empty($jasa['gambar_portofolio'])
                     value="<?= e($_SESSION['csrf_token']) ?>"
                 >
 
+                <div class="form-top-row">
+
+                    <div class="form-group upload-group">
+
+                        <label for="gambar" class="upload-btn">
+                            Gambar Portofolio
+                        </label>
+
+                        <input
+                            type="file"
+                            id="gambar"
+                            name="gambar"
+                            accept=".jpg,.jpeg,.png,image/jpeg,image/png"
+                            hidden
+                        >
+
+                    </div>
+
+                </div>
+
+                <small class="upload-info">
+                    Format JPG, JPEG, dan PNG. Maksimal 5 MB.
+                </small>
+
                 <div class="form-group">
-                    <label>Gambar Portofolio</label>
 
                     <div class="portfolio-list">
 
@@ -121,66 +140,58 @@ $gambar_awal = !empty($jasa['gambar_portofolio'])
                         </p>
 
                     </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <input
+                            type="text"
+                            id="nama_jasa"
+                            name="nama_jasa"
+                            maxlength="100"
+                            value="<?= e($jasa['nama_jasa']) ?>"
+                            placeholder="Nama Jasa"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <input
+                            type="number"
+                            id="harga"
+                            name="harga"
+                            min="1"
+                            max="2147483647"
+                            step="1"
+                            value="<?= e($jasa['harga_jasa']) ?>"
+                            placeholder="Harga Jasa"
+                            required
+                        >
+
+                    </div>
+
                 </div>
 
                 <div class="form-group">
-                    <label for="gambar">Ganti Gambar Portofolio</label>
-
-                    <input
-                        type="file"
-                        id="gambar"
-                        name="gambar"
-                        accept=".jpg,.jpeg,.png,image/jpeg,image/png"
-                    >
-
-                    <small>
-                        Format JPG, JPEG, dan PNG. Maksimal 5 MB.
-                    </small>
-                </div>
-
-                <div class="form-group">
-                    <label for="nama_jasa">Nama Jasa</label>
-
-                    <input
-                        type="text"
-                        id="nama_jasa"
-                        name="nama_jasa"
-                        maxlength="100"
-                        value="<?= e($jasa['nama_jasa']) ?>"
-                        required
-                    >
-                </div>
-
-                <div class="form-group">
-                    <label for="deskripsi">Deskripsi Jasa</label>
 
                     <textarea
                         id="deskripsi"
                         name="deskripsi"
                         rows="5"
+                        placeholder="Deskripsi Jasa"
                     ><?= e($jasa['deskripsi_jasa']) ?></textarea>
-                </div>
 
-                <div class="form-group">
-                    <label for="harga">Harga Jasa</label>
-
-                    <input
-                        type="number"
-                        id="harga"
-                        name="harga"
-                        min="1"
-                        step="1"
-                        value="<?= e($jasa['harga_jasa']) ?>"
-                        required
-                    >
                 </div>
 
                 <div class="form-actions">
-
                     <button type="submit" class="submit-btn">
                         Simpan Perubahan
                     </button>
-
                 </div>
 
             </form>
@@ -192,15 +203,6 @@ $gambar_awal = !empty($jasa['gambar_portofolio'])
     <div class="lightbox" id="lightbox" onclick="tutupGambar()">
 
         <div class="lightbox-content" onclick="event.stopPropagation()">
-
-            <button
-                type="button"
-                class="lightbox-close"
-                onclick="tutupGambar()"
-                aria-label="Tutup preview"
-            >
-                &times;
-            </button>
 
             <img
                 id="gambar-penuh"
@@ -224,7 +226,7 @@ $gambar_awal = !empty($jasa['gambar_portofolio'])
 
         let urlGambar = null;
 
-        inputGambar.addEventListener('change', function () {
+        inputGambar.addEventListener('change', function() {
             const file = this.files[0];
 
             if (urlGambar) {
@@ -235,7 +237,9 @@ $gambar_awal = !empty($jasa['gambar_portofolio'])
             if (!file) {
                 previewImage.src = gambarAwal;
                 previewImage.style.display = gambarAwal ? 'block' : 'none';
+
                 gambarKosong.style.display = gambarAwal ? 'none' : 'block';
+
                 return;
             }
 
@@ -243,7 +247,14 @@ $gambar_awal = !empty($jasa['gambar_portofolio'])
 
             previewImage.src = urlGambar;
             previewImage.style.display = 'block';
+
             gambarKosong.style.display = 'none';
+        });
+
+        previewImage.addEventListener('click', function() {
+            if (this.src) {
+                bukaGambar(this.src);
+            }
         });
 
         function bukaGambar(src) {
@@ -256,7 +267,7 @@ $gambar_awal = !empty($jasa['gambar_portofolio'])
             gambarPenuh.src = '';
         }
 
-        document.addEventListener('keydown', function (event) {
+        document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 tutupGambar();
             }
@@ -270,7 +281,7 @@ $gambar_awal = !empty($jasa['gambar_portofolio'])
             }, 3000);
         }
 
-        window.addEventListener('beforeunload', function () {
+        window.addEventListener('beforeunload', function() {
             if (urlGambar) {
                 URL.revokeObjectURL(urlGambar);
             }

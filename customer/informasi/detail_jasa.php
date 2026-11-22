@@ -82,7 +82,7 @@ $no_wa = $editor['no_wa'] ?? '';
 
         <div class="page-header">
 
-            <h1>Portofolio Editor</h1>
+            <h1>Detail Jasa</h1>
 
             <p>
                 Kategori: <?= e($kategori['nama_kategori']) ?>
@@ -93,7 +93,7 @@ $no_wa = $editor['no_wa'] ?? '';
         <div class="action-header">
 
             <a href="kategori_jasa.php" class="back-btn">
-                Kembali ke Kategori Jasa
+                Kategori Jasa
             </a>
 
             <?php if (!empty($no_wa)): ?>
@@ -109,7 +109,7 @@ $no_wa = $editor['no_wa'] ?? '';
         <?php if (empty($data_jasa)): ?>
 
             <div class="empty-message">
-                <h3>Belum ada portofolio yang tersedia.</h3>
+                <h3>Belum ada detail jasa yang tersedia.</h3>
             </div>
 
         <?php else: ?>
@@ -150,10 +150,14 @@ $no_wa = $editor['no_wa'] ?? '';
 
                         <div class="service-info">
 
-                            <p>
-                                <strong>Deskripsi Jasa:</strong><br>
-                                <?= nl2br(e($jasa['deskripsi_jasa'])) ?>
-                            </p>
+                            <?php if (!empty(trim($jasa['deskripsi_jasa'] ?? ''))): ?>
+
+                                <p>
+                                    <strong>Deskripsi Jasa:</strong><br>
+                                    <?= nl2br(e($jasa['deskripsi_jasa'])) ?>
+                                </p>
+
+                            <?php endif; ?>
 
                             <p>
                                 <strong>Harga Jasa:</strong><br>
@@ -170,7 +174,7 @@ $no_wa = $editor['no_wa'] ?? '';
 
                             <p>
                                 <strong>Tanggal Upload:</strong><br>
-                                <?= e($jasa['tanggal_upload']) ?>
+                                <?= e(date('d-m-Y', strtotime($jasa['tanggal_upload']))) ?>
                             </p>
 
                         </div>
