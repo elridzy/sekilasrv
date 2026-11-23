@@ -27,7 +27,7 @@ if (
     $namaKategori === '' ||
     mb_strlen($namaKategori) > 100
 ) {
-    header('Location: tambah_edit.php?pesan=gagal');
+    header('Location: tambah_edit.php');
     exit;
 }
 
@@ -55,14 +55,14 @@ try {
         ]);
 
         if (!$cek->fetch()) {
-            header('Location: tambah_edit.php?pesan=gagal');
+            header('Location: tambah_edit.php');
             exit;
         }
     }
 
-    header('Location: tambah_edit.php?pesan=diedit');
+    header('Location: tambah_edit.php');
     exit;
 } catch (PDOException $e) {
-    header('Location: tambah_edit.php?pesan=gagal');
+    header('Location: tambah_edit.php');
     exit;
 }

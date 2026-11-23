@@ -19,7 +19,7 @@ if (
     $namaKategori === '' ||
     mb_strlen($namaKategori) > 100
 ) {
-    header('Location: tambah_edit.php?pesan=gagal');
+    header('Location: tambah_edit.php');
     exit;
 }
 
@@ -33,9 +33,9 @@ try {
         'nama_kategori' => $namaKategori
     ]);
 
-    header('Location: tambah_edit.php?pesan=berhasil');
+    header('Location: tambah_edit.php');
     exit;
 } catch (PDOException $e) {
-    header('Location: tambah_edit.php?pesan=gagal');
+    header('Location: tambah_edit.php');
     exit;
 }

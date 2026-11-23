@@ -36,7 +36,6 @@ if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 
-$error = $_SESSION['error_jasa'] ?? '';
 $old = $_SESSION['old_jasa'] ?? [];
 
 unset($_SESSION['error_jasa'], $_SESSION['old_jasa']);
@@ -64,12 +63,6 @@ unset($_SESSION['error_jasa'], $_SESSION['old_jasa']);
                 <h1>Tambah Portofolio</h1>
                 <p>Kategori: <?= e($kategori['nama_kategori']) ?></p>
             </div>
-
-            <?php if ($error): ?>
-                <div class="message error-message" id="pesan">
-                    <?= e($error) ?>
-                </div>
-            <?php endif; ?>
 
             <form action="proses_tambah.php" method="POST" enctype="multipart/form-data">
 
@@ -230,14 +223,6 @@ unset($_SESSION['error_jasa'], $_SESSION['old_jasa']);
                 tutupGambar();
             }
         });
-
-        const pesan = document.getElementById('pesan');
-
-        if (pesan) {
-            setTimeout(() => {
-                pesan.style.display = 'none';
-            }, 3000);
-        }
 
         window.addEventListener('beforeunload', function() {
             if (urlGambar) {

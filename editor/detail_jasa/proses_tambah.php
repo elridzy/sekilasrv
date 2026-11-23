@@ -8,9 +8,8 @@ if (!isset($_SESSION['editor']) || !isset($_SESSION['id_editor'])) {
 
 require_once '../../database/koneksi.php';
 
-function kembaliDenganError($pesan, $id_kategori_jasa, $old = [])
+function kembaliDenganError($id_kategori_jasa, $old = [])
 {
-    $_SESSION['error_jasa'] = $pesan;
     $_SESSION['old_jasa'] = $old;
 
     header('Location: tambah.php?id_kategori_jasa=' . $id_kategori_jasa);
@@ -42,27 +41,19 @@ if (
     !is_string($_SESSION['csrf_token']) ||
     !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])
 ) {
-    kembaliDenganError('Permintaan tidak valid.', $id_kategori_jasa, $old);
+    kembaliDenganError($id_kategori_jasa, $old);
 }
 
 if ($id_kategori_jasa <= 0 || $nama_jasa === '') {
-    kembaliDenganError('Data jasa tidak valid.', $id_kategori_jasa, $old);
+    kembaliDenganError($id_kategori_jasa, $old);
 }
 
 if (preg_match('/^-\d+$/D', $harga)) {
-    kembaliDenganError(
-        'Harga tidak boleh kurang dari 0.',
-        $id_kategori_jasa,
-        $old
-    );
+    kembaliDenganError($id_kategori_jasa, $old);
 }
 
 if (!preg_match('/^\d+$/D', $harga)) {
-    kembaliDenganError(
-        'Harga harus berupa bilangan bulat tanpa titik atau koma.',
-        $id_kategori_jasa,
-        $old
-    );
+    kembaliDenganError($id_kategori_jasa, $old);
 }
 
 $harga_normal = ltrim($harga, '0');
@@ -78,11 +69,7 @@ if (
         strcmp($harga_normal, '2147483647') > 0
     )
 ) {
-    kembaliDenganError(
-        'Harga melebihi batas nilai INTEGER.',
-        $id_kategori_jasa,
-        $old
-    );
+    kembaliDenganError($id_kategori_jasa, $old);
 }
 
 $harga_db = (int) $harga_normal;
@@ -96,54 +83,30 @@ $stmt = $pdo->prepare("
 $stmt->execute([$id_kategori_jasa]);
 
 if (!$stmt->fetch()) {
-    kembaliDenganError(
-        'Kategori jasa tidak ditemukan.',
-        $id_kategori_jasa,
-        $old
-    );
+    kembaliDenganError($id_kategori_jasa, $old);
 }
 
 if (!isset($_FILES['gambar'])) {
-    kembaliDenganError(
-        'Silakan pilih gambar portofolio.',
-        $id_kategori_jasa,
-        $old
-    );
+    kembaliDenganError($id_kategori_jasa, $old);
 }
 
 if (
     $_FILES['gambar']['error'] === UPLOAD_ERR_INI_SIZE ||
     $_FILES['gambar']['error'] === UPLOAD_ERR_FORM_SIZE
 ) {
-    kembaliDenganError(
-        'Ukuran gambar maksimal 5 MB.',
-        $id_kategori_jasa,
-        $old
-    );
+    kembaliDenganError($id_kategori_jasa, $old);
 }
 
 if ($_FILES['gambar']['error'] === UPLOAD_ERR_NO_FILE) {
-    kembaliDenganError(
-        'Silakan pilih gambar portofolio.',
-        $id_kategori_jasa,
-        $old
-    );
+    kembaliDenganError($id_kategori_jasa, $old);
 }
 
 if ($_FILES['gambar']['error'] !== UPLOAD_ERR_OK) {
-    kembaliDenganError(
-        'Terjadi kesalahan saat mengunggah gambar.',
-        $id_kategori_jasa,
-        $old
-    );
+    kembaliDenganError($id_kategori_jasa, $old);
 }
 
 if ($_FILES['gambar']['size'] > 5 * 1024 * 1024) {
-    kembaliDenganError(
-        'Ukuran gambar maksimal 5 MB.',
-        $id_kategori_jasa,
-        $old
-    );
+    kembaliDenganError($id_kategori_jasa, $old);
 }
 
 $folder_upload = __DIR__ . '/../gambar_portofolio/';
@@ -151,22 +114,14 @@ $folder_database = 'editor/gambar_portofolio/';
 
 if (!is_dir($folder_upload)) {
     if (!mkdir($folder_upload, 0755, true) && !is_dir($folder_upload)) {
-        kembaliDenganError(
-            'Folder penyimpanan gambar tidak tersedia.',
-            $id_kategori_jasa,
-            $old
-        );
+        kembaliDenganError($id_kategori_jasa, $old);
     }
 }
 
 $tmp_file = $_FILES['gambar']['tmp_name'];
 
 if (!is_uploaded_file($tmp_file)) {
-    kembaliDenganError(
-        'File gambar tidak valid.',
-        $id_kategori_jasa,
-        $old
-    );
+    kembaliDenganError($id_kategori_jasa, $old);
 }
 
 $ekstensi_asli = strtolower(
@@ -174,11 +129,7 @@ $ekstensi_asli = strtolower(
 );
 
 if (!in_array($ekstensi_asli, ['jpg', 'jpeg', 'png'], true)) {
-    kembaliDenganError(
-        'Format gambar hanya boleh JPG, JPEG, dan PNG.',
-        $id_kategori_jasa,
-        $old
-    );
+    kembaliDenganError($id_kategori_jasa, $old);
 }
 
 $finfo = new finfo(FILEINFO_MIME_TYPE);
@@ -193,11 +144,7 @@ if (
     !isset($format[$mime]) ||
     !in_array($ekstensi_asli, $format[$mime], true)
 ) {
-    kembaliDenganError(
-        'Format gambar tidak sesuai. Gunakan JPG, JPEG, atau PNG.',
-        $id_kategori_jasa,
-        $old
-    );
+    kembaliDenganError($id_kategori_jasa, $old);
 }
 
 $ekstensi = $ekstensi_asli;
@@ -237,14 +184,11 @@ try {
     $pdo->commit();
 
     header(
-        'Location: portofolio.php?id_kategori_jasa=' .
-        $id_kategori_jasa . '&pesan=berhasil'
+        'Location: portofolio.php?id_kategori_jasa=' . $id_kategori_jasa
     );
 
     exit;
-
 } catch (Throwable $e) {
-
     if ($pdo->inTransaction()) {
         $pdo->rollBack();
     }
@@ -255,9 +199,6 @@ try {
 
     error_log($e->getMessage());
 
-    kembaliDenganError(
-        'Gagal menyimpan data jasa.',
-        $id_kategori_jasa,
-        $old
-    );
+    kembaliDenganError($id_kategori_jasa, $old);
 }
+?>

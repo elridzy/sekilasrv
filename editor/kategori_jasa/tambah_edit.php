@@ -15,7 +15,7 @@ $kategoriEdit = null;
 
 if ($id !== null) {
     if (!$id || $id < 1) {
-        header('Location: tambah_edit.php?pesan=gagal');
+        header('Location: tambah_edit.php');
         exit;
     }
 
@@ -32,7 +32,7 @@ if ($id !== null) {
     $kategoriEdit = $queryEdit->fetch(PDO::FETCH_ASSOC);
 
     if (!$kategoriEdit) {
-        header('Location: tambah_edit.php?pesan=gagal');
+        header('Location: tambah_edit.php');
         exit;
     }
 
@@ -46,8 +46,6 @@ $query = $pdo->query(
 );
 
 $daftarKategori = $query->fetchAll(PDO::FETCH_ASSOC);
-
-$pesan = $_GET['pesan'] ?? '';
 
 function e($nilai)
 {
@@ -148,27 +146,6 @@ function e($nilai)
                 <div class="category-list">
                     <h2>Daftar Kategori Jasa</h2>
 
-                    <?php if ($pesan === 'berhasil'): ?>
-                        <div class="success-message" id="pesan">
-                            Kategori jasa berhasil ditambahkan.
-                        </div>
-
-                    <?php elseif ($pesan === 'diedit'): ?>
-                        <div class="success-message" id="pesan">
-                            Nama kategori berhasil diperbarui.
-                        </div>
-
-                    <?php elseif ($pesan === 'dihapus'): ?>
-                        <div class="success-message" id="pesan">
-                            Kategori jasa berhasil dihapus.
-                        </div>
-
-                    <?php elseif ($pesan === 'gagal'): ?>
-                        <div class="error-message" id="pesan">
-                            Gagal hapus, data detail jasa masih tersimpan.
-                        </div>
-                    <?php endif; ?>
-
                     <?php if (!empty($daftarKategori)): ?>
 
                         <div class="category-items">
@@ -237,16 +214,6 @@ function e($nilai)
             </div>
         </div>
     </div>
-
-    <script>
-        const pesan = document.getElementById('pesan');
-
-        if (pesan) {
-            setTimeout(() => {
-                pesan.style.display = 'none';
-            }, 3000);
-        }
-    </script>
 </body>
 
 </html>

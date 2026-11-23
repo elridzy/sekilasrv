@@ -22,8 +22,6 @@ session_start();
                     Login untuk mengelola jasa.
                 </p>
 
-                <div class="error-message" id="pesan-error" style="display: none;"></div>
-
                 <form id="form-login" action="proses_login.php" method="POST">
                     <div class="form-group">
                         <input
@@ -51,6 +49,8 @@ session_start();
                         Login
                     </button>
                 </form>
+
+                <div class="error-message" id="pesan-error" style="display: none;"></div>
             </div>
         </div>
     </div>
@@ -81,11 +81,11 @@ session_start();
                 }
 
                 pesanError.textContent = hasil.pesan;
-                pesanError.style.display = 'table';
+                pesanError.style.display = 'block';
 
             } catch (error) {
                 pesanError.textContent = 'Terjadi kesalahan. Silakan coba lagi.';
-                pesanError.style.display = 'table';
+                pesanError.style.display = 'block';
             }
 
             tombolLogin.disabled = false;

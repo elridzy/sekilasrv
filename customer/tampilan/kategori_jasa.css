@@ -127,13 +127,6 @@ body {
     color: #A0A5B1;
 }
 
-/* pesan ketika terjadi kesalahan */
-.error-message {
-    background: #401F22;
-    border: 1px solid #7F292E;
-    color: #FF9298;
-}
-
 /* indikator fokus pada tombol dan tautan */
 a:focus-visible {
     outline: 2px solid #1877F2;

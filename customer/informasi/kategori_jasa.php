@@ -48,44 +48,42 @@ function e($nilai)
                     </p>
                 </div>
 
-                <?php if (isset($error)): ?>
+                <?php if (!isset($error)): ?>
 
-                    <div class="message error-message">
-                        Gagal mengambil data kategori jasa.
-                    </div>
+                    <?php if (empty($kategori_jasa)): ?>
 
-                <?php elseif (empty($kategori_jasa)): ?>
+                        <div class="message empty-message">
+                            Belum ada kategori jasa yang tersedia.
+                        </div>
 
-                    <div class="message empty-message">
-                        Belum ada kategori jasa yang tersedia.
-                    </div>
+                    <?php else: ?>
 
-                <?php else: ?>
+                        <div class="category-list">
 
-                    <div class="category-list">
+                            <?php foreach ($kategori_jasa as $kategori): ?>
 
-                        <?php foreach ($kategori_jasa as $kategori): ?>
+                                <div class="category-item">
 
-                            <div class="category-item">
+                                    <div class="category-info">
+                                        <h2 class="category-name">
+                                            <?= e($kategori['nama_kategori']) ?>
+                                        </h2>
+                                    </div>
 
-                                <div class="category-info">
-                                    <h2 class="category-name">
-                                        <?= e($kategori['nama_kategori']) ?>
-                                    </h2>
+                                    <a
+                                        href="detail_jasa.php?id_kategori_jasa=<?= (int) $kategori['id_kategori_jasa'] ?>"
+                                        class="detail-btn"
+                                    >
+                                        Lihat Detail Jasa
+                                    </a>
+
                                 </div>
 
-                                <a
-                                    href="detail_jasa.php?id_kategori_jasa=<?= (int) $kategori['id_kategori_jasa'] ?>"
-                                    class="detail-btn"
-                                >
-                                    Lihat Detail Jasa
-                                </a>
+                            <?php endforeach; ?>
 
-                            </div>
+                        </div>
 
-                        <?php endforeach; ?>
-
-                    </div>
+                    <?php endif; ?>
 
                 <?php endif; ?>
 

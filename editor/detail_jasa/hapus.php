@@ -53,7 +53,6 @@ if (!$jasa) {
 $gambar = $jasa['gambar_portofolio'];
 
 try {
-
     $pdo->beginTransaction();
 
     $stmt = $pdo->prepare("
@@ -80,14 +79,11 @@ try {
     }
 
     header(
-        'Location: portofolio.php?id_kategori_jasa=' .
-        $id_kategori_jasa . '&pesan=dihapus'
+        'Location: portofolio.php?id_kategori_jasa=' . $id_kategori_jasa
     );
 
     exit;
-
 } catch (Throwable $e) {
-
     if ($pdo->inTransaction()) {
         $pdo->rollBack();
     }
@@ -96,3 +92,4 @@ try {
 
     die('Gagal menghapus data jasa.');
 }
+?>

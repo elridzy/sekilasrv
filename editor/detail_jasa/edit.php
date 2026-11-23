@@ -41,10 +41,6 @@ if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 
-$error = $_SESSION['error_jasa'] ?? '';
-
-unset($_SESSION['error_jasa']);
-
 $gambar_awal = !empty($jasa['gambar_portofolio'])
     ? '../../' . $jasa['gambar_portofolio']
     : '';
@@ -71,12 +67,6 @@ $gambar_awal = !empty($jasa['gambar_portofolio'])
             <div class="form-header">
                 <h1>Edit Portofolio</h1>
             </div>
-
-            <?php if ($error): ?>
-                <div class="message error-message" id="pesan">
-                    <?= e($error) ?>
-                </div>
-            <?php endif; ?>
 
             <form action="proses_edit.php" method="POST" enctype="multipart/form-data">
 
@@ -183,7 +173,7 @@ $gambar_awal = !empty($jasa['gambar_portofolio'])
                         id="deskripsi"
                         name="deskripsi"
                         rows="5"
-                        placeholder="Deskripsi Jasa"
+                        placeholder="Deskripsi Jasa (Opsional)"
                     ><?= e($jasa['deskripsi_jasa']) ?></textarea>
 
                 </div>
@@ -272,14 +262,6 @@ $gambar_awal = !empty($jasa['gambar_portofolio'])
                 tutupGambar();
             }
         });
-
-        const pesan = document.getElementById('pesan');
-
-        if (pesan) {
-            setTimeout(() => {
-                pesan.style.display = 'none';
-            }, 3000);
-        }
 
         window.addEventListener('beforeunload', function() {
             if (urlGambar) {

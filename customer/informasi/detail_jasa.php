@@ -44,6 +44,14 @@ $stmt = $pdo->prepare("
 $stmt->execute([$id_kategori_jasa]);
 $editor = $stmt->fetch(PDO::FETCH_ASSOC);
 
+$nomor_wa_link = preg_replace('/\D+/', '', $editor['no_wa'] ?? '');
+
+if (str_starts_with($nomor_wa_link, '0')) {
+    $nomor_wa_link = '62' . substr($nomor_wa_link, 1);
+} elseif (str_starts_with($nomor_wa_link, '8')) {
+    $nomor_wa_link = '62' . $nomor_wa_link;
+}
+
 // mengambil data jasa
 $stmt = $pdo->prepare("
     SELECT
@@ -51,8 +59,7 @@ $stmt = $pdo->prepare("
         nama_jasa,
         deskripsi_jasa,
         harga_jasa,
-        gambar_portofolio,
-        tanggal_upload
+        gambar_portofolio
     FROM detail_jasa
     WHERE id_kategori_jasa = ?
     ORDER BY id_detail_jasa DESC
@@ -60,8 +67,6 @@ $stmt = $pdo->prepare("
 
 $stmt->execute([$id_kategori_jasa]);
 $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-$no_wa = $editor['no_wa'] ?? '';
 ?>
 
 <!DOCTYPE html>
@@ -96,11 +101,16 @@ $no_wa = $editor['no_wa'] ?? '';
                 Kategori Jasa
             </a>
 
-            <?php if (!empty($no_wa)): ?>
+            <?php if (!empty($nomor_wa_link)): ?>
 
-                <p class="whatsapp-info">
-                    Jika berminat, hubungi WA editor: <?= e($no_wa) ?>
-                </p>
+                <a
+                    href="https://wa.me/<?= e($nomor_wa_link) ?>"
+                    class="whatsapp-btn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Chat Editor Via WhatsApp
+                </a>
 
             <?php endif; ?>
 
@@ -170,11 +180,6 @@ $no_wa = $editor['no_wa'] ?? '';
                                         '.'
                                     ) ?>
                                 </span>
-                            </p>
-
-                            <p>
-                                <strong>Tanggal Upload:</strong><br>
-                                <?= e(date('d-m-Y', strtotime($jasa['tanggal_upload']))) ?>
                             </p>
 
                         </div>

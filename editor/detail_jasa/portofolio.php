@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (!preg_match('/^\+?[0-9]{8,15}$/', $no_wa)) {
-        header("Location: portofolio.php?id_kategori_jasa=$id_kategori_jasa&pesan=wa_gagal");
+        header("Location: portofolio.php?id_kategori_jasa=$id_kategori_jasa");
         exit;
     }
 
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $stmt->execute([$no_wa, $id_editor]);
 
-    header("Location: portofolio.php?id_kategori_jasa=$id_kategori_jasa&pesan=wa_diubah");
+    header("Location: portofolio.php?id_kategori_jasa=$id_kategori_jasa");
     exit;
 }
 
@@ -97,8 +97,6 @@ $stmt = $pdo->prepare("
 
 $stmt->execute([$id_kategori_jasa, $id_editor]);
 $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-$pesan = $_GET['pesan'] ?? '';
 ?>
 
 <!DOCTYPE html>
@@ -181,38 +179,6 @@ $pesan = $_GET['pesan'] ?? '';
             </a>
 
         </div>
-
-        <?php if ($pesan === 'berhasil'): ?>
-
-            <div class="message success-message" id="pesan">
-                Portofolio berhasil ditambahkan.
-            </div>
-
-        <?php elseif ($pesan === 'diubah'): ?>
-
-            <div class="message success-message" id="pesan">
-                Portofolio berhasil diperbarui.
-            </div>
-
-        <?php elseif ($pesan === 'dihapus'): ?>
-
-            <div class="message success-message" id="pesan">
-                Portofolio berhasil dihapus.
-            </div>
-
-        <?php elseif ($pesan === 'wa_diubah'): ?>
-
-            <div class="message success-message" id="pesan">
-                Nomor WhatsApp berhasil disimpan.
-            </div>
-
-        <?php elseif ($pesan === 'wa_gagal'): ?>
-
-            <div class="message error-message" id="pesan">
-                Format nomor WhatsApp tidak valid.
-            </div>
-
-        <?php endif; ?>
 
         <?php if (empty($data_jasa)): ?>
 
@@ -342,14 +308,6 @@ $pesan = $_GET['pesan'] ?? '';
     </div>
 
     <script>
-        const pesanBerhasil = document.getElementById('pesan');
-
-        if (pesanBerhasil) {
-            setTimeout(() => {
-                pesanBerhasil.remove();
-            }, 3000);
-        }
-
         const lightbox = document.getElementById('lightbox');
         const gambarBesar = document.getElementById('gambar-besar');
 

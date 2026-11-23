@@ -30,6 +30,7 @@ body {
 
 /* desain kartu login */
 .login-card {
+    position: relative;
     width: 100%;
     padding: 35px;
     background: #1E222B;
@@ -124,10 +125,12 @@ body {
 
 /* desain pesan kesalahan login */
 .error-message {
-    display: table;
-    width: fit-content;
+    position: absolute;
+    bottom: calc(100% + 25px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
     max-width: 100%;
-    margin: 0 auto 22px;
     padding: 12px 15px;
     background: #401F22;
     color: #FF9298;

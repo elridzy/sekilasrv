@@ -20,7 +20,7 @@ $id = filter_input(
 );
 
 if (!$id || $id < 1) {
-    header('Location: tambah_edit.php?pesan=gagal');
+    header('Location: tambah_edit.php');
     exit;
 }
 
@@ -35,13 +35,13 @@ try {
     ]);
 
     if ($query->rowCount() === 0) {
-        header('Location: tambah_edit.php?pesan=gagal');
+        header('Location: tambah_edit.php');
         exit;
     }
 
-    header('Location: tambah_edit.php?pesan=dihapus');
+    header('Location: tambah_edit.php');
     exit;
 } catch (PDOException $e) {
-    header('Location: tambah_edit.php?pesan=gagal');
+    header('Location: tambah_edit.php');
     exit;
 }

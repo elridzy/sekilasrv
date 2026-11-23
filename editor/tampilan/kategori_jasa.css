@@ -317,33 +317,6 @@ a {
     line-height: 1.6;
 }
 
-/* pengaturan dasar pesan berhasil dan gagal */
-.success-message,
-.error-message {
-    display: table;
-    width: fit-content;
-    max-width: 100%;
-    margin: 0 0 20px;
-    padding: 12px 15px;
-    border-radius: 7px;
-    font-size: 13px;
-    line-height: 1.5;
-}
-
-/* pesan berhasil */
-.success-message {
-    background: #123B25;
-    border: 1px solid #176B3A;
-    color: #7BE6A1;
-}
-
-/* pesan gagal */
-.error-message {
-    background: #401F22;
-    border: 1px solid #7F292E;
-    color: #FF9298;
-}
-
 /* efek fokus pada tombol dan link */
 button:focus-visible,
 a:focus-visible {
