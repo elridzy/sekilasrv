@@ -115,68 +115,70 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <div class="container">
 
-        <div class="page-header">
+        <div class="header-layout">
 
-            <h1>Kelola Detail Jasa</h1>
+            <div class="page-header">
 
-            <div class="header-info">
-                <p>Kategori: <?= e($kategori['nama_kategori']) ?></p>
-            </div>
+                <h1>Kelola Detail Jasa</h1>
 
-        </div>
-
-        <div class="action-header">
-
-            <a
-                href="tambah.php?id_kategori_jasa=<?= $id_kategori_jasa ?>"
-                class="add-btn"
-            >
-                Tambah Portofolio
-            </a>
-
-            <form method="POST" class="whatsapp-form">
-
-                <label for="no_wa">Nomor WhatsApp Editor</label>
-
-                <div class="whatsapp-input">
-
-                    <input
-                        type="hidden"
-                        name="csrf_token"
-                        value="<?= e($_SESSION['csrf_token']) ?>"
-                    >
-
-                    <input
-                        type="tel"
-                        id="no_wa"
-                        name="no_wa"
-                        placeholder="Masukkan nomor wa anda."
-                        value="<?= e($editor['no_wa'] ?? '') ?>"
-                        pattern="\+?[0-9]{8,15}"
-                        maxlength="16"
-                        required
-                    >
-
-                    <button type="submit" class="whatsapp-btn">
-                        Simpan
-                    </button>
-
+                <div class="header-info">
+                    <p>Kategori: <?= e($kategori['nama_kategori']) ?></p>
                 </div>
 
-            </form>
+            </div>
 
-            <a
-                href="../../customer/informasi/detail_jasa.php?id_kategori_jasa=<?= $id_kategori_jasa ?>"
-                class="customer-btn"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Cek Halaman Customer
-            </a>
+            <div class="action-header">
 
-            <a href="../auth/logout.php" class="logout-btn">
-                Logout
-            </a>
+                <a
+                    href="tambah.php?id_kategori_jasa=<?= $id_kategori_jasa ?>"
+                    class="add-btn"
+                >
+                    Tambah Portofolio
+                </a>
+
+                <form method="POST" class="whatsapp-form">
+
+                    <div class="whatsapp-input">
+
+                        <input
+                            type="hidden"
+                            name="csrf_token"
+                            value="<?= e($_SESSION['csrf_token']) ?>"
+                        >
+
+                        <input
+                            type="tel"
+                            id="no_wa"
+                            name="no_wa"
+                            placeholder="Nomor WhatsApp Editor"
+                            value="<?= e($editor['no_wa'] ?? '') ?>"
+                            pattern="\+?[0-9]{8,15}"
+                            maxlength="16"
+                            required
+                        >
+
+                        <button type="submit" class="whatsapp-btn">
+                            Simpan
+                        </button>
+
+                    </div>
+
+                </form>
+
+                <a
+                    href="../../customer/informasi/detail_jasa.php?id_kategori_jasa=<?= $id_kategori_jasa ?>"
+                    class="customer-btn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Cek Halaman Customer
+                </a>
+
+                <a href="../auth/logout.php" class="logout-btn">
+                    Logout
+                </a>
+
+            </div>
 
         </div>
 

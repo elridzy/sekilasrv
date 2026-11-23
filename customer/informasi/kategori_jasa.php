@@ -41,7 +41,7 @@ function e($nilai)
             <div class="category-card">
 
                 <div class="card-header">
-                    <h1 class="title">Kategori Jasa</h1>
+                    <h1 class="title">Daftar Kategori Jasa</h1>
 
                     <p class="subtitle">
                         Silakan pilih kategori jasa.

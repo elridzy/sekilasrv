@@ -25,52 +25,56 @@ body {
     justify-content: center;
 }
 
-/* header halaman */
-.page-header {
-    width: 100%;
-    margin-bottom: 22px;
-}
-
-.page-header h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
-}
-
-.page-header p {
-    color: #A0A5B1;
-    font-size: 16px;
-    line-height: 1.5;
-    overflow-wrap: anywhere;
-}
-
-/* posisi tombol kembali dan whatsapp */
-.action-header {
+/* bagian header */
+.header-layout {
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: flex-start;
+    gap: 12px;
     width: 100%;
     margin-bottom: 18px;
 }
 
-/* tombol kembali */
-.back-btn {
+/* judul halaman */
+.page-header {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    min-height: 39px;
-    padding: 10px 14px;
-    background: #22262F;
-    color: #FFFFFF;
+    align-items: flex-start;
+    flex: 0 0 auto;
+    width: fit-content;
+    min-height: 75px;
+    padding: 10px 15px;
+    background: #1E222B;
     border: 1px solid #383D49;
     border-radius: 7px;
-    font-size: 13px;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: background-color 0.2s, border-color 0.2s;
+    text-align: left;
 }
 
-.back-btn:hover {
-    border-color: #1877F2;
+.page-header h1 {
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.page-header p {
+    color: #A0A5B1;
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: nowrap;
+}
+
+/* tombol aksi */
+.action-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    flex: 0 0 auto;
+    width: fit-content;
+    padding: 16px;
+    background: #1E222B;
+    border: 1px solid #383D49;
+    border-radius: 7px;
 }
 
 /* tombol whatsapp */
@@ -78,7 +82,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-shrink: 0;
     min-height: 39px;
     padding: 10px 14px;
     background: #00AA13;
@@ -95,7 +98,29 @@ body {
     background: #008F10;
 }
 
-/* daftar kartu jasa */
+/* tombol kembali */
+.back-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 39px;
+    padding: 10px 14px;
+    background: #1877F2;
+    color: #FFFFFF;
+    border: 1px solid #1877F2;
+    border-radius: 7px;
+    font-size: 13px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.back-btn:hover {
+    background: #0866D9;
+    border-color: #0866D9;
+}
+
+/* daftar jasa */
 .service-list {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -112,10 +137,10 @@ body {
     width: 100%;
     min-width: 0;
     height: 100%;
-    padding: 20px;
     background: #1E222B;
     border: 1px solid #383D49;
     border-radius: 7px;
+    padding: 20px;
 }
 
 /* bagian portofolio */
@@ -134,7 +159,6 @@ body {
     line-height: 1.5;
 }
 
-/* gambar portofolio */
 .portfolio-list {
     display: flex;
     flex-wrap: wrap;
@@ -148,8 +172,8 @@ body {
     height: 180px;
     object-fit: contain;
     background: #1E222B;
-    border: 1px solid #383D49;
     border-radius: 5px;
+    border: 1px solid #383D49;
     cursor: pointer;
 }
 
@@ -157,7 +181,7 @@ body {
     opacity: 0.85;
 }
 
-/* gambar tidak tersedia */
+/* jika belum ada gambar */
 .no-image {
     display: flex;
     justify-content: center;
@@ -183,16 +207,16 @@ body {
     overflow-wrap: anywhere;
 }
 
-/* deskripsi dan harga */
+/* informasi jasa */
 .service-info {
     display: flex;
     flex-direction: column;
     flex: 1;
     gap: 12px;
-    margin-top: 12px;
     color: #D5D9E1;
-    font-size: 13px;
     line-height: 1.6;
+    margin-top: 12px;
+    font-size: 13px;
     overflow-wrap: anywhere;
 }
 
@@ -204,7 +228,7 @@ body {
     color: #FFFFFF;
 }
 
-/* data jasa kosong */
+/* pesan kosong */
 .empty-message {
     width: 100%;
     padding: 35px 20px;
@@ -220,7 +244,7 @@ body {
     font-weight: normal;
 }
 
-/* preview gambar */
+/* lightbox */
 .lightbox {
     display: none;
     position: fixed;
@@ -249,7 +273,7 @@ body {
     border-radius: 8px;
 }
 
-/* tombol tutup preview */
+/* tombol tutup lightbox */
 .lightbox-close {
     appearance: none;
     -webkit-appearance: none;
@@ -269,7 +293,6 @@ body {
     cursor: pointer;
     outline: none;
     box-shadow: none;
-    transition: border-color 0.2s;
 }
 
 .lightbox-close:hover,
@@ -282,24 +305,39 @@ body {
     box-shadow: none;
 }
 
-/* indikator fokus */
 a:focus-visible {
     outline: 2px solid #1877F2;
     outline-offset: 3px;
 }
 
-/* responsive tablet */
+/* tablet */
 @media (max-width: 900px) {
+    .header-layout {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
     .service-list {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
-/* responsive smartphone */
+/* handphone */
 @media (max-width: 600px) {
     .container {
         width: calc(100% - 24px);
         padding: 20px 0;
+    }
+
+    .header-layout {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .page-header {
+        align-items: flex-start;
+        padding: 16px;
     }
 
     .page-header h1 {
@@ -308,11 +346,14 @@ a:focus-visible {
 
     .page-header p {
         font-size: 14px;
+        white-space: normal;
     }
 
     .action-header {
         flex-wrap: wrap;
+        justify-content: flex-start;
         gap: 10px;
+        padding: 12px;
     }
 
     .back-btn,
