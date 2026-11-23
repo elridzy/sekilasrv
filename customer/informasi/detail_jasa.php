@@ -31,17 +31,13 @@ if (!$kategori) {
 }
 
 // mengambil nomor whatsapp editor
-$stmt = $pdo->prepare("
-    SELECT e.no_wa
-    FROM detail_jasa dj
-    JOIN editor e
-        ON dj.id_editor = e.id_editor
-    WHERE dj.id_kategori_jasa = ?
-    ORDER BY dj.id_detail_jasa DESC
+$stmt = $pdo->query("
+    SELECT no_wa
+    FROM editor
+    ORDER BY id_editor DESC
     LIMIT 1
 ");
 
-$stmt->execute([$id_kategori_jasa]);
 $editor = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $nomor_wa_link = preg_replace('/\D+/', '', $editor['no_wa'] ?? '');
@@ -85,34 +81,36 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <div class="container">
 
-        <div class="page-header">
+        <div class="header-layout">
 
-            <h1>Detail Jasa</h1>
+            <div class="page-header">
+                <h1>Detail Jasa</h1>
 
-            <p>
-                Kategori: <?= e($kategori['nama_kategori']) ?>
-            </p>
+                <p>
+                    Kategori: <?= e($kategori['nama_kategori']) ?>
+                </p>
+            </div>
 
-        </div>
+            <div class="action-header">
 
-        <div class="action-header">
-
-            <a href="kategori_jasa.php" class="back-btn">
-                Kategori Jasa
-            </a>
-
-            <?php if (!empty($nomor_wa_link)): ?>
-
-                <a
-                    href="https://wa.me/<?= e($nomor_wa_link) ?>"
-                    class="whatsapp-btn"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Chat Editor Via WhatsApp
+                <a href="kategori_jasa.php" class="back-btn">
+                    Kategori Jasa
                 </a>
 
-            <?php endif; ?>
+                <?php if (!empty($nomor_wa_link)): ?>
+
+                    <a
+                        href="https://wa.me/<?= e($nomor_wa_link) ?>"
+                        class="whatsapp-btn"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Chat Editor Via WhatsApp
+                    </a>
+
+                <?php endif; ?>
+
+            </div>
 
         </div>
 
