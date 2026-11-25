@@ -40,21 +40,13 @@ body {
 
 /* bagian header kartu */
 .card-header {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 /* judul halaman */
 .title {
-    margin-bottom: 8px;
     font-size: 26px;
     font-weight: 600;
-}
-
-/* deskripsi halaman */
-.subtitle {
-    color: #A0A5B1;
-    font-size: 14px;
-    line-height: 1.6;
 }
 
 /* daftar kategori */
@@ -145,10 +137,6 @@ a:focus-visible {
 
     .title {
         font-size: 23px;
-    }
-
-    .subtitle {
-        font-size: 13px;
     }
 
     .category-item {

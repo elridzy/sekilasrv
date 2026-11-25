@@ -93,7 +93,7 @@ $gambar_awal = !empty($jasa['gambar_portofolio'])
                     <div class="form-group upload-group">
 
                         <label for="gambar" class="upload-btn">
-                            Gambar Portofolio
+                            Ganti Portofolio
                         </label>
 
                         <input
@@ -104,6 +104,12 @@ $gambar_awal = !empty($jasa['gambar_portofolio'])
                             hidden
                         >
 
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">
+                            Simpan Perubahan
+                        </button>
                     </div>
 
                 </div>
@@ -176,12 +182,6 @@ $gambar_awal = !empty($jasa['gambar_portofolio'])
                         placeholder="Deskripsi Jasa (Opsional)"
                     ><?= e($jasa['deskripsi_jasa']) ?></textarea>
 
-                </div>
-
-                <div class="form-actions">
-                    <button type="submit" class="submit-btn">
-                        Simpan Perubahan
-                    </button>
                 </div>
 
             </form>

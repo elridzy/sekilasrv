@@ -79,7 +79,11 @@ function e($nilai)
                     Cek Halaman Customer
                 </a>
 
-                <a href="../auth/logout.php" class="logout-btn">
+                <a
+                    href="../auth/logout.php"
+                    class="logout-btn"
+                    onclick="return confirm('Apakah anda ingin logout?')"
+                >
                     Logout
                 </a>
             </div>
@@ -179,7 +183,7 @@ function e($nilai)
                                         <form
                                             action="hapus.php"
                                             method="POST"
-                                            onsubmit="return confirm('Yakin ingin menghapus kategori ini?')"
+                                            onsubmit="return confirm('Apakah anda ingin menghapus kategori ini?')"
                                         >
                                             <input
                                                 type="hidden"

@@ -174,7 +174,11 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     Cek Halaman Customer
                 </a>
 
-                <a href="../auth/logout.php" class="logout-btn">
+                <a
+                    href="../auth/logout.php"
+                    class="logout-btn"
+                    onclick="return confirm('Apakah anda ingin logout?')"
+                >
                     Logout
                 </a>
 
@@ -256,7 +260,7 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <form
                                 action="hapus.php"
                                 method="POST"
-                                onsubmit="return confirm('Yakin ingin menghapus portofolio ini?')"
+                                onsubmit="return confirm('Apakah anda ingin menghapus portofolio ini?')"
                             >
 
                                 <input

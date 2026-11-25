@@ -42,10 +42,6 @@ function e($nilai)
 
                 <div class="card-header">
                     <h1 class="title">Daftar Kategori Jasa</h1>
-
-                    <p class="subtitle">
-                        Silakan pilih kategori jasa.
-                    </p>
                 </div>
 
                 <?php if (!isset($error)): ?>
@@ -84,6 +80,12 @@ function e($nilai)
                         </div>
 
                     <?php endif; ?>
+
+                <?php else: ?>
+
+                    <div class="message empty-message">
+                        Terjadi kesalahan saat mengambil data kategori jasa.
+                    </div>
 
                 <?php endif; ?>
 

@@ -83,7 +83,7 @@ unset($_SESSION['error_jasa'], $_SESSION['old_jasa']);
                     <div class="form-group upload-group">
 
                         <label for="gambar" class="upload-btn">
-                            Gambar Portofolio
+                            Upload Portofolio
                         </label>
 
                         <input
@@ -95,6 +95,12 @@ unset($_SESSION['error_jasa'], $_SESSION['old_jasa']);
                             hidden
                         >
 
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">
+                            Simpan Portofolio
+                        </button>
                     </div>
 
                 </div>
@@ -149,12 +155,6 @@ unset($_SESSION['error_jasa'], $_SESSION['old_jasa']);
                         rows="5"
                         placeholder="Deskripsi Jasa (Opsional)"
                     ><?= e($old['deskripsi'] ?? '') ?></textarea>
-                </div>
-
-                <div class="form-actions">
-                    <button type="submit" class="submit-btn">
-                        Simpan Portofolio
-                    </button>
                 </div>
 
             </form>
