@@ -324,7 +324,7 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <div class="portfolio-list">
 
                                     <img
-                                        src="../../<?= e($jasa['gambar_portofolio']) ?>"
+                                        src="../../../<?= e($jasa['gambar_portofolio']) ?>"
                                         alt="Portofolio <?= e($jasa['nama_jasa']) ?>"
                                         class="preview-image"
                                         onclick="bukaGambar(this.src)"
@@ -420,7 +420,7 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             <!-- pesan jika hasil pencarian tidak ditemukan -->
             <div class="empty-message" id="empty-message" style="display: none;">
-                <h3 id="empty-text">Jasa tidak ditemukan.</h3>
+                <h3 id="empty-text">Portofolio tidak ditemukan.</h3>
             </div>
 
         <?php endif; ?>

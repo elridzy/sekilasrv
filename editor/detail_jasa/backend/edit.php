@@ -52,7 +52,7 @@ if (empty($_SESSION['csrf_token'])) {
 
 // menyiapkan path gambar portofolio
 $gambar_awal = !empty($jasa['gambar_portofolio'])
-    ? '../../' . $jasa['gambar_portofolio']
+    ? '../../../' . $jasa['gambar_portofolio']
     : '';
 
 ?>
@@ -219,6 +219,7 @@ $gambar_awal = !empty($jasa['gambar_portofolio'])
 
     <!-- fitur preview gambar dan lightbox -->
     <script>
+
         // mengambil elemen halaman
         const inputGambar = document.getElementById('gambar');
         const previewImage = document.getElementById('preview-image');
@@ -293,6 +294,7 @@ $gambar_awal = !empty($jasa['gambar_portofolio'])
                 URL.revokeObjectURL(urlGambar);
             }
         });
+
     </script>
 
 </body>

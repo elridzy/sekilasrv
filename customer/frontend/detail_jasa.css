@@ -28,9 +28,9 @@ body {
 /* bagian header */
 .header-layout {
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 12px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
     width: 100%;
     margin-bottom: 18px;
 }
@@ -68,10 +68,12 @@ body {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 10px;
-    flex: 0 0 auto;
+    flex-wrap: wrap;
+    gap: 15px;
     width: fit-content;
-    padding: 16px;
+    max-width: 100%;
+    min-width: 0;
+    padding: 20px;
     background: #1E222B;
     border: 1px solid #383D49;
     border-radius: 7px;
@@ -86,6 +88,7 @@ body {
     padding: 10px 14px;
     background: #00AA13;
     color: #FFFFFF;
+    border: 1px solid #00AA13;
     border-radius: 7px;
     font-size: 13px;
     text-decoration: none;
@@ -96,6 +99,7 @@ body {
 
 .whatsapp-btn:hover {
     background: #008F10;
+    border-color: #008F10;
 }
 
 /* tombol kembali */
@@ -111,6 +115,7 @@ body {
     border-radius: 7px;
     font-size: 13px;
     text-decoration: none;
+    text-align: center;
     white-space: nowrap;
     transition: background-color 0.2s, border-color 0.2s;
 }
@@ -118,6 +123,71 @@ body {
 .back-btn:hover {
     background: #0866D9;
     border-color: #0866D9;
+}
+
+/* tombol instagram */
+.instagram-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 39px;
+    padding: 10px 14px;
+    background: #E1306C;
+    color: #FFFFFF;
+    border: 1px solid #E1306C;
+    border-radius: 7px;
+    font-size: 13px;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.instagram-btn:hover {
+    background: #C13584;
+    border-color: #C13584;
+}
+
+/* baris pencarian */
+.search-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+/* form pencarian */
+.search-form {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+}
+
+/* input pencarian */
+.search-input {
+    width: 285px;
+    max-width: 100%;
+    height: 39px;
+    padding: 10px;
+    background: #22262F;
+    color: #FFFFFF;
+    border: 1px solid #383D49;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+}
+
+/* warna placeholder saat belum diisi */
+.search-input::placeholder {
+    color: #A0A5B1;
+    opacity: 1;
+}
+
+/* tampilan input saat dipilih */
+.search-input:focus {
+    color: #FFFFFF;
+    border: 1px solid #1877F2;
+    outline: none;
 }
 
 /* daftar jasa */
@@ -244,6 +314,18 @@ body {
     font-weight: normal;
 }
 
+/* pesan ketika pencarian tidak menemukan hasil */
+.no-results {
+    width: 100%;
+    padding: 25px 20px;
+    background: #1E222B;
+    border: 1px solid #303642;
+    border-radius: 8px;
+    color: #A0A5B1;
+    font-size: 14px;
+    text-align: center;
+}
+
 /* lightbox */
 .lightbox {
     display: none;
@@ -273,38 +355,6 @@ body {
     border-radius: 8px;
 }
 
-/* tombol tutup lightbox */
-.lightbox-close {
-    appearance: none;
-    -webkit-appearance: none;
-    position: absolute;
-    top: 0;
-    right: -45px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 35px;
-    height: 35px;
-    background: #22262F;
-    color: #FFFFFF;
-    border: 1px solid #383D49;
-    border-radius: 50%;
-    font-size: 25px;
-    cursor: pointer;
-    outline: none;
-    box-shadow: none;
-}
-
-.lightbox-close:hover,
-.lightbox-close:focus,
-.lightbox-close:active {
-    background: #22262F;
-    color: #FFFFFF;
-    border-color: #1877F2;
-    outline: none;
-    box-shadow: none;
-}
-
 /* efek fokus tautan */
 a:focus-visible {
     outline: 2px solid #1877F2;
@@ -313,11 +363,6 @@ a:focus-visible {
 
 /* tablet */
 @media (max-width: 900px) {
-    .header-layout {
-        flex-wrap: wrap;
-        justify-content: flex-start;
-    }
-
     .service-list {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -330,14 +375,9 @@ a:focus-visible {
         padding: 20px 0;
     }
 
-    .header-layout {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-
     .page-header {
-        align-items: flex-start;
+        width: fit-content;
+        max-width: 100%;
         padding: 16px;
     }
 
@@ -351,17 +391,29 @@ a:focus-visible {
     }
 
     .action-header {
-        flex-wrap: wrap;
-        justify-content: flex-start;
+        flex-direction: column;
+        align-items: stretch;
         gap: 10px;
-        padding: 12px;
+        padding: 16px;
     }
 
     .back-btn,
-    .whatsapp-btn {
-        min-height: 36px;
-        padding: 9px 12px;
-        font-size: 12px;
+    .whatsapp-btn,
+    .instagram-btn {
+        width: 100%;
+        min-height: 39px;
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    .search-row,
+    .search-form {
+        width: 100%;
+    }
+
+    .search-input {
+        width: 100%;
+        max-width: 100%;
     }
 
     .service-list {
@@ -373,7 +425,7 @@ a:focus-visible {
     }
 
     .lightbox {
-        padding: 15px 55px 15px 15px;
+        padding: 15px;
     }
 
     .lightbox-content {
@@ -383,9 +435,5 @@ a:focus-visible {
     .lightbox-content img {
         max-width: 100%;
         max-height: 85vh;
-    }
-
-    .lightbox-close {
-        right: -40px;
     }
 }

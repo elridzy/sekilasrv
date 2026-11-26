@@ -36,9 +36,9 @@ if (!$kategori) {
     die('Kategori jasa tidak ditemukan.');
 }
 
-// mengambil nomor whatsapp editor
+// mengambil nomor whatsapp dan username instagram editor
 $stmt = $pdo->query("
-    SELECT no_wa
+    SELECT no_wa, username_ig
     FROM editor
     ORDER BY id_editor DESC
     LIMIT 1
@@ -54,6 +54,9 @@ if (str_starts_with($nomor_wa_link, '0')) {
 } elseif (str_starts_with($nomor_wa_link, '8')) {
     $nomor_wa_link = '62' . $nomor_wa_link;
 }
+
+// menyiapkan username instagram untuk link
+$username_ig = ltrim(trim($editor['username_ig'] ?? ''), '@');
 
 // mengambil data jasa berdasarkan kategori
 $stmt = $pdo->prepare("
@@ -126,6 +129,38 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 <?php endif; ?>
 
+                <?php if (!empty($username_ig)): ?>
+
+                    <!-- tombol instagram editor -->
+                    <a
+                        href="https://www.instagram.com/<?= e(rawurlencode($username_ig)) ?>/"
+                        class="instagram-btn"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Kunjungi Instagram Editor
+                    </a>
+
+                <?php endif; ?>
+
+            </div>
+
+            <!-- baris pencarian -->
+            <div class="search-row">
+
+                <!-- input pencarian nama jasa -->
+                <div class="search-form">
+
+                    <input
+                        type="text"
+                        id="search-input"
+                        class="search-input"
+                        placeholder="🔍 Cari portofolio berdasarkan nama jasa"
+                        autocomplete="off"
+                    >
+
+                </div>
+
             </div>
 
         </div>
@@ -140,12 +175,15 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php else: ?>
 
             <!-- daftar kartu jasa -->
-            <div class="service-list">
+            <div class="service-list" id="service-list">
 
                 <?php foreach ($data_jasa as $jasa): ?>
 
                     <!-- kartu detail jasa -->
-                    <div class="service-card">
+                    <div
+                        class="service-card"
+                        data-nama="<?= e($jasa['nama_jasa']) ?>"
+                    >
 
                         <!-- bagian portofolio -->
                         <div class="portfolio-section">
@@ -212,6 +250,11 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             </div>
 
+            <!-- pesan jika hasil pencarian tidak ditemukan -->
+            <div class="empty-message" id="search-empty" style="display: none;">
+                <h3>Portofolio tidak ditemukan.</h3>
+            </div>
+
         <?php endif; ?>
 
     </div>
@@ -220,16 +263,6 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="lightbox" id="lightbox" onclick="tutupGambar()">
 
         <div class="lightbox-content" onclick="event.stopPropagation()">
-
-            <!-- tombol menutup preview -->
-            <button
-                type="button"
-                class="lightbox-close"
-                onclick="tutupGambar()"
-                aria-label="Tutup preview"
-            >
-                &times;
-            </button>
 
             <!-- gambar ukuran penuh -->
             <img
@@ -242,8 +275,47 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     </div>
 
-    <!-- fungsi preview gambar -->
+    <!-- fitur pencarian dan preview gambar -->
     <script>
+
+        // mengambil elemen pencarian
+        const searchInput = document.getElementById('search-input');
+        const serviceCards = document.querySelectorAll('.service-card');
+        const serviceList = document.getElementById('service-list');
+        const searchEmpty = document.getElementById('search-empty');
+
+        // menjalankan pencarian nama jasa
+        searchInput.addEventListener('input', function() {
+
+            const kataKunci = this.value.toLowerCase().trim();
+            let jumlahDitemukan = 0;
+
+            // memeriksa setiap kartu jasa
+            serviceCards.forEach(function(card) {
+
+                const namaJasa = card.dataset.nama.toLowerCase();
+
+                if (namaJasa.includes(kataKunci)) {
+                    card.style.display = '';
+                    jumlahDitemukan++;
+                } else {
+                    card.style.display = 'none';
+                }
+
+            });
+
+            // menampilkan hasil pencarian
+            if (jumlahDitemukan === 0) {
+                serviceList.style.display = 'none';
+                searchEmpty.style.display = 'block';
+            } else {
+                serviceList.style.display = '';
+                searchEmpty.style.display = 'none';
+            }
+
+        });
+
+        // membuka preview gambar
         function bukaGambar(src) {
             document.getElementById('gambar-penuh').src = src;
             document.getElementById('lightbox').style.display = 'flex';
@@ -261,6 +333,7 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 tutupGambar();
             }
         });
+
     </script>
 
 </body>
