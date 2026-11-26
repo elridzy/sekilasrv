@@ -1,24 +1,31 @@
 <?php
+// memulai session editor
 session_start();
 
+// memeriksa status login editor
 if (!isset($_SESSION['editor']) || !isset($_SESSION['id_editor'])) {
-    header('Location: ../auth/login.php');
+    header('Location: ../../auth/backend/login.php');
     exit;
 }
 
-require_once '../../database/koneksi.php';
+// menghubungkan database
+require_once '../../../database/koneksi.php';
 
+// mengambil id kategori dari url
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
+// menentukan mode halaman
 $modeEdit = false;
 $kategoriEdit = null;
 
+// memeriksa apakah halaman sedang dalam mode edit
 if ($id !== null) {
     if (!$id || $id < 1) {
-        header('Location: tambah_edit.php');
+        header('Location: dashboard.php');
         exit;
     }
 
+    // mengambil data kategori yang akan diedit
     $queryEdit = $pdo->prepare(
         "SELECT id_kategori_jasa, nama_kategori
          FROM kategori_jasa
@@ -31,14 +38,16 @@ if ($id !== null) {
 
     $kategoriEdit = $queryEdit->fetch(PDO::FETCH_ASSOC);
 
+    // mengarahkan kembali jika kategori tidak ditemukan
     if (!$kategoriEdit) {
-        header('Location: tambah_edit.php');
+        header('Location: dashboard.php');
         exit;
     }
 
     $modeEdit = true;
 }
 
+// mengambil seluruh daftar kategori jasa
 $query = $pdo->query(
     "SELECT id_kategori_jasa, nama_kategori
      FROM kategori_jasa
@@ -47,6 +56,7 @@ $query = $pdo->query(
 
 $daftarKategori = $query->fetchAll(PDO::FETCH_ASSOC);
 
+// mengamankan output html
 function e($nilai)
 {
     return htmlspecialchars((string) $nilai, ENT_QUOTES, 'UTF-8');
@@ -62,16 +72,18 @@ function e($nilai)
 
     <title>Kelola Kategori Jasa</title>
 
-    <link rel="stylesheet" href="../tampilan/kategori_jasa.css">
+    <!-- menghubungkan file css -->
+    <link rel="stylesheet" href="../frontend/dashboard.css">
 </head>
 
 <body>
     <div class="page-container">
         <div class="content-container">
 
+            <!-- tombol navigasi halaman -->
             <div class="top-actions">
                 <a
-                    href="../../customer/informasi/kategori_jasa.php"
+                    href="../../../customer/backend/kategori_jasa.php"
                     class="back-btn"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -80,7 +92,7 @@ function e($nilai)
                 </a>
 
                 <a
-                    href="../auth/logout.php"
+                    href="../../auth/backend/proses_logout.php"
                     class="logout-btn"
                     onclick="return confirm('Apakah anda ingin logout?')"
                 >
@@ -88,11 +100,13 @@ function e($nilai)
                 </a>
             </div>
 
+            <!-- kartu utama pengelolaan kategori -->
             <div class="category-card">
                 <div class="card-header">
                     <h1 class="title">Kelola Kategori Jasa</h1>
                 </div>
 
+                <!-- form edit kategori -->
                 <?php if ($modeEdit): ?>
 
                     <h2 class="form-title">Mengubah Nama Kategori</h2>
@@ -120,10 +134,11 @@ function e($nilai)
                         </div>
                     </form>
 
-                    <a href="tambah_edit.php" class="back-btn">
+                    <a href="dashboard.php" class="back-btn">
                         Batal Edit
                     </a>
 
+                <!-- form tambah kategori -->
                 <?php else: ?>
 
                     <h2 class="form-title">Tambah Kategori Jasa</h2>
@@ -147,6 +162,7 @@ function e($nilai)
 
                 <?php endif; ?>
 
+                <!-- menampilkan daftar kategori jasa -->
                 <div class="category-list">
                     <h2>Daftar Kategori Jasa</h2>
 
@@ -160,6 +176,7 @@ function e($nilai)
 
                                 <div class="category-item">
 
+                                    <!-- informasi kategori -->
                                     <div class="category-info">
 
                                         <span class="category-number">
@@ -172,24 +189,25 @@ function e($nilai)
 
                                     </div>
 
+                                    <!-- tombol pengelolaan kategori -->
                                     <div class="category-actions">
 
                                         <a
-                                            href="../detail_jasa/portofolio.php?id_kategori_jasa=<?= (int) $kategori['id_kategori_jasa'] ?>"
+                                            href="../../detail_jasa/backend/dashboard.php?id_kategori_jasa=<?= (int) $kategori['id_kategori_jasa'] ?>"
                                             class="manage-btn"
                                         >
                                             Kelola Jasa
                                         </a>
 
                                         <a
-                                            href="tambah_edit.php?id=<?= (int) $kategori['id_kategori_jasa'] ?>"
+                                            href="dashboard.php?id=<?= (int) $kategori['id_kategori_jasa'] ?>"
                                             class="edit-btn"
                                         >
                                             Edit
                                         </a>
 
                                         <form
-                                            action="hapus.php"
+                                            action="proses_hapus.php"
                                             method="POST"
                                             onsubmit="return confirm('Apakah anda ingin menghapus kategori ini?')"
                                         >
@@ -216,6 +234,7 @@ function e($nilai)
 
                     <?php else: ?>
 
+                        <!-- pesan jika kategori masih kosong -->
                         <p class="empty-message">
                             Belum ada kategori jasa yang tersedia.
                         </p>

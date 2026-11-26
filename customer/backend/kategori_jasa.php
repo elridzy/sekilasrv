@@ -1,6 +1,8 @@
 <?php
+// menghubungkan halaman dengan database
 require_once '../../database/koneksi.php';
 
+// mengambil data kategori jasa dari database
 try {
     $query = $pdo->query("
         SELECT id_kategori_jasa, nama_kategori
@@ -14,6 +16,7 @@ try {
     $error = true;
 }
 
+// mengamankan data sebelum ditampilkan ke halaman
 function e($nilai)
 {
     return htmlspecialchars((string) $nilai, ENT_QUOTES, 'UTF-8');
@@ -24,28 +27,36 @@ function e($nilai)
 <html lang="id">
 
 <head>
+    <!-- pengaturan dasar halaman -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Informasi Kategori Jasa</title>
 
-    <link rel="stylesheet" href="../tampilan/kategori_jasa.css">
+    <!-- menghubungkan file css -->
+    <link rel="stylesheet" href="../frontend/kategori_jasa.css">
 </head>
 
 <body>
 
+    <!-- container utama halaman -->
     <main class="page-container">
 
+        <!-- container konten -->
         <section class="content-container">
 
+            <!-- kartu daftar kategori jasa -->
             <div class="category-card">
 
+                <!-- bagian judul kartu -->
                 <div class="card-header">
                     <h1 class="title">Daftar Kategori Jasa</h1>
                 </div>
 
+                <!-- menampilkan daftar kategori jika tidak terjadi kesalahan -->
                 <?php if (!isset($error)): ?>
 
+                    <!-- menampilkan pesan jika kategori masih kosong -->
                     <?php if (empty($kategori_jasa)): ?>
 
                         <div class="message empty-message">
@@ -54,14 +65,17 @@ function e($nilai)
 
                     <?php else: ?>
 
+                        <!-- daftar kategori jasa -->
                         <div class="category-list">
 
                             <?php $nomor = 1; ?>
 
+                            <!-- menampilkan setiap kategori jasa -->
                             <?php foreach ($kategori_jasa as $kategori): ?>
 
                                 <div class="category-item">
 
+                                    <!-- informasi kategori -->
                                     <div class="category-info">
 
                                         <span class="category-number">
@@ -74,6 +88,7 @@ function e($nilai)
 
                                     </div>
 
+                                    <!-- tombol menuju halaman detail jasa -->
                                     <a
                                         href="detail_jasa.php?id_kategori_jasa=<?= (int) $kategori['id_kategori_jasa'] ?>"
                                         class="detail-btn"
@@ -89,6 +104,7 @@ function e($nilai)
 
                     <?php endif; ?>
 
+                <!-- menampilkan pesan jika terjadi kesalahan database -->
                 <?php else: ?>
 
                     <div class="message empty-message">

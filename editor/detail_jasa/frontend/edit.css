@@ -1,0 +1,318 @@
+/* reset css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* desain dasar halaman */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #171A21;
+    color: #FFFFFF;
+    min-height: 100vh;
+}
+
+/* container utama */
+.container {
+    width: calc(100% - 40px);
+    max-width: 1100px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* kartu form edit portofolio */
+.form-card {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    background: #1E222B;
+    border: 1px solid #383D49;
+    border-radius: 7px;
+    padding: 25px;
+}
+
+/* jarak terakhir form */
+.form-card form > .form-group:last-of-type {
+    margin-bottom: 0;
+}
+
+/* judul dan deskripsi form */
+.form-header {
+    margin-bottom: 22px;
+}
+
+.form-header h1 {
+    font-size: 23px;
+    margin-bottom: 6px;
+}
+
+.form-header p {
+    color: #A0A5B1;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* kelompok input form */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 17px;
+}
+
+/* label input form */
+.form-group label {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* desain input teks dan textarea */
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    background: #22262F;
+    border: 1px solid #383D49;
+    color: #FFFFFF;
+    padding: 11px 12px;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    outline: none;
+}
+
+/* warna tulisan placeholder */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #A0A5B1;
+    opacity: 1;
+}
+
+/* efek fokus input */
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #1877F2;
+}
+
+/* ukuran dan desain textarea */
+.form-group textarea {
+    resize: vertical;
+    min-height: 110px;
+    line-height: 1.5;
+}
+
+/* baris tombol upload */
+.form-top-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 8px;
+}
+
+.form-top-row .form-group {
+    margin-bottom: 0;
+}
+
+/* kelompok upload gambar */
+.upload-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+/* sembunyikan input file bawaan */
+.form-group input[type="file"] {
+    display: none;
+}
+
+/* tombol pilih gambar portofolio */
+.upload-btn {
+    display: inline-block;
+    width: fit-content;
+    padding: 10px 16px;
+    background: #1877F2;
+    color: #FFFFFF;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: normal;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.form-group label.upload-btn {
+    font-weight: normal;
+}
+
+.upload-btn:hover {
+    background: #0F65D4;
+}
+
+/* keterangan format gambar */
+.upload-info {
+    display: block;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #A0A5B1;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+/* keterangan kecil di bawah input */
+.form-group small {
+    color: #A0A5B1;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+/* baris nama dan harga jasa */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    width: 100%;
+    clear: both;
+    margin-top: 17px;
+}
+
+.form-row .form-group {
+    min-width: 0;
+}
+
+/* jarak gambar portofolio di form */
+.form-group .portfolio-list {
+    margin-top: 4px;
+}
+
+/* pembungkus preview gambar */
+#preview-container {
+    display: flex;
+    flex: 0 0 auto;
+    width: 100%;
+    margin-bottom: 17px;
+    clear: both;
+}
+
+/* gambar preview pada form edit */
+.preview-image {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    background: #1E222B;
+    border-radius: 5px;
+    border: 1px solid #383D49;
+    cursor: pointer;
+}
+
+.preview-image:hover {
+    opacity: 0.85;
+}
+
+/* tampilan preview gambar */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+/* pembungkus gambar */
+.lightbox-content {
+    position: relative;
+    display: inline-block;
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
+/* gambar ukuran penuh */
+.lightbox-content img {
+    display: block;
+    max-width: 90vw;
+    max-height: 85vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* posisi tombol simpan form */
+.form-actions {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: 15px;
+}
+
+/* tombol simpan */
+.submit-btn {
+    border: none;
+    background: #00AA13;
+    color: #FFFFFF;
+    padding: 10px 17px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: normal;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.submit-btn:hover {
+    background: #008F10;
+}
+
+/* responsive: smartphone */
+@media (max-width: 600px) {
+    .container {
+        width: calc(100% - 24px);
+        padding: 20px 0;
+    }
+
+    .form-card {
+        max-width: 100%;
+        padding: 20px 16px;
+    }
+
+    .form-header h1 {
+        font-size: 21px;
+    }
+
+    .form-top-row {
+        align-items: center;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .preview-image {
+        max-width: 100%;
+    }
+
+    .lightbox {
+        padding: 15px;
+    }
+
+    .lightbox-content {
+        max-width: 100%;
+    }
+
+    .lightbox-content img {
+        max-width: 100%;
+        max-height: 85vh;
+    }
+}

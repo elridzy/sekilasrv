@@ -2,15 +2,21 @@
 <html lang="id">
 
 <head>
+    <!-- pengaturan halaman -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pilih Peran</title>
-    <link rel="stylesheet" href="beranda.css">
+
+    <!-- menghubungkan file css -->
+    <link rel="stylesheet" href="../frontend/beranda.css">
 </head>
 
 <body>
+
+    <!-- container utama halaman -->
     <main class="main-container">
 
+        <!-- bagian sambutan -->
         <section class="left-section">
             <div class="welcome-content">
                 <h1 class="title">
@@ -23,14 +29,18 @@
             </div>
         </section>
 
+        <!-- bagian pemilihan peran -->
         <section class="right-section">
             <div class="role-card">
 
+                <!-- judul pemilihan peran -->
                 <h2 class="heading">Pilih Peran</h2>
 
+                <!-- daftar tombol peran -->
                 <div class="button-group">
 
-                    <a href="../customer/informasi/kategori_jasa.php" class="role-btn">
+                    <!-- tombol masuk sebagai customer -->
+                    <a href="../../customer/backend/kategori_jasa.php" class="role-btn">
                         <div class="icon-wrapper">🔍</div>
 
                         <div class="btn-text">
@@ -39,7 +49,8 @@
                         </div>
                     </a>
 
-                    <a href="../editor/auth/login.php" class="role-btn">
+                    <!-- tombol masuk sebagai editor -->
+                    <a href="../../editor/auth/backend/login.php" class="role-btn">
                         <div class="icon-wrapper">💻</div>
 
                         <div class="btn-text">
@@ -53,6 +64,7 @@
         </section>
 
     </main>
+
 </body>
 
 </html>

@@ -1,17 +1,22 @@
 <?php
+
+// menghubungkan database
 require_once '../../database/koneksi.php';
 
+// fungsi untuk mengamankan output
 function e($nilai)
 {
     return htmlspecialchars((string) $nilai, ENT_QUOTES, 'UTF-8');
 }
 
+// mengambil id kategori dari url
 $id_kategori_jasa = filter_input(
     INPUT_GET,
     'id_kategori_jasa',
     FILTER_VALIDATE_INT
 );
 
+// memvalidasi id kategori
 if (!$id_kategori_jasa || $id_kategori_jasa <= 0) {
     die('Kategori jasa tidak valid.');
 }
@@ -26,6 +31,7 @@ $stmt = $pdo->prepare("
 $stmt->execute([$id_kategori_jasa]);
 $kategori = $stmt->fetch(PDO::FETCH_ASSOC);
 
+// memeriksa keberadaan kategori
 if (!$kategori) {
     die('Kategori jasa tidak ditemukan.');
 }
@@ -40,6 +46,7 @@ $stmt = $pdo->query("
 
 $editor = $stmt->fetch(PDO::FETCH_ASSOC);
 
+// mengubah nomor whatsapp ke format link
 $nomor_wa_link = preg_replace('/\D+/', '', $editor['no_wa'] ?? '');
 
 if (str_starts_with($nomor_wa_link, '0')) {
@@ -48,7 +55,7 @@ if (str_starts_with($nomor_wa_link, '0')) {
     $nomor_wa_link = '62' . $nomor_wa_link;
 }
 
-// mengambil data jasa
+// mengambil data jasa berdasarkan kategori
 $stmt = $pdo->prepare("
     SELECT
         id_detail_jasa,
@@ -63,26 +70,33 @@ $stmt = $pdo->prepare("
 
 $stmt->execute([$id_kategori_jasa]);
 $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
 <html lang="id">
 
 <head>
+
+    <!-- pengaturan halaman -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Informasi Detail Jasa</title>
 
-    <link rel="stylesheet" href="../tampilan/detail_jasa.css">
+    <!-- menghubungkan file css -->
+    <link rel="stylesheet" href="../frontend/detail_jasa.css">
+
 </head>
 
 <body>
 
+    <!-- container utama -->
     <div class="container">
 
+        <!-- bagian header halaman -->
         <div class="header-layout">
 
+            <!-- informasi kategori -->
             <div class="page-header">
                 <h1>Detail Jasa</h1>
 
@@ -91,6 +105,7 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </p>
             </div>
 
+            <!-- tombol navigasi dan kontak -->
             <div class="action-header">
 
                 <a href="kategori_jasa.php" class="back-btn">
@@ -99,6 +114,7 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 <?php if (!empty($nomor_wa_link)): ?>
 
+                    <!-- tombol whatsapp editor -->
                     <a
                         href="https://wa.me/<?= e($nomor_wa_link) ?>"
                         class="whatsapp-btn"
@@ -114,6 +130,7 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         </div>
 
+        <!-- menampilkan pesan jika jasa kosong -->
         <?php if (empty($data_jasa)): ?>
 
             <div class="empty-message">
@@ -122,16 +139,20 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <?php else: ?>
 
+            <!-- daftar kartu jasa -->
             <div class="service-list">
 
                 <?php foreach ($data_jasa as $jasa): ?>
 
+                    <!-- kartu detail jasa -->
                     <div class="service-card">
 
+                        <!-- bagian portofolio -->
                         <div class="portfolio-section">
 
                             <?php if (!empty($jasa['gambar_portofolio'])): ?>
 
+                                <!-- gambar portofolio -->
                                 <div class="portfolio-list">
 
                                     <img
@@ -144,6 +165,7 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                             <?php else: ?>
 
+                                <!-- pesan jika gambar belum tersedia -->
                                 <div class="no-image">
                                     Belum ada gambar portofolio.
                                 </div>
@@ -152,10 +174,12 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                         </div>
 
+                        <!-- nama jasa -->
                         <div class="service-header">
                             <h3><?= e($jasa['nama_jasa']) ?></h3>
                         </div>
 
+                        <!-- informasi deskripsi dan harga -->
                         <div class="service-info">
 
                             <?php if (!empty(trim($jasa['deskripsi_jasa'] ?? ''))): ?>
@@ -192,10 +216,12 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     </div>
 
+    <!-- tampilan preview gambar -->
     <div class="lightbox" id="lightbox" onclick="tutupGambar()">
 
         <div class="lightbox-content" onclick="event.stopPropagation()">
 
+            <!-- tombol menutup preview -->
             <button
                 type="button"
                 class="lightbox-close"
@@ -205,6 +231,7 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 &times;
             </button>
 
+            <!-- gambar ukuran penuh -->
             <img
                 src=""
                 alt="Preview gambar portofolio"
@@ -215,17 +242,20 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     </div>
 
+    <!-- fungsi preview gambar -->
     <script>
         function bukaGambar(src) {
             document.getElementById('gambar-penuh').src = src;
             document.getElementById('lightbox').style.display = 'flex';
         }
 
+        // fungsi menutup preview gambar
         function tutupGambar() {
             document.getElementById('lightbox').style.display = 'none';
             document.getElementById('gambar-penuh').src = '';
         }
 
+        // menutup preview menggunakan tombol escape
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 tutupGambar();
