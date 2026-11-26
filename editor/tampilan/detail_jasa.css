@@ -382,7 +382,7 @@ body {
 /* kartu form tambah dan edit portofolio */
 .form-card {
     width: 100%;
-    max-width: 650px;
+    max-width: 520px;
     margin: 0 auto;
     background: #1E222B;
     border: 1px solid #383D49;
@@ -390,6 +390,7 @@ body {
     padding: 25px;
 }
 
+/* jarak terakhir form */
 .form-card form > .form-group:last-of-type {
     margin-bottom: 0;
 }
@@ -458,7 +459,7 @@ body {
     line-height: 1.5;
 }
 
-/* baris tombol upload dan simpan */
+/* baris tombol upload */
 .form-top-row {
     display: flex;
     justify-content: flex-start;
@@ -526,8 +527,8 @@ body {
 /* baris nama dan harga jasa */
 .form-row {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 15px;
+    grid-template-columns: 1fr;
+    gap: 0;
     width: 100%;
     clear: both;
     margin-top: 17px;
@@ -542,7 +543,7 @@ body {
     margin-top: 4px;
 }
 
-/* pembungkus preview gambar pada form tambah */
+/* pembungkus preview gambar */
 #preview-container {
     display: flex;
     flex: 0 0 auto;
@@ -603,7 +604,8 @@ body {
 .form-actions {
     display: flex;
     justify-content: flex-start;
-    margin-top: 0;
+    width: 100%;
+    margin-top: 15px;
 }
 
 /* tombol simpan */
@@ -619,7 +621,6 @@ body {
     white-space: nowrap;
 }
 
-/* efek hover tombol simpan */
 .submit-btn:hover {
     background: #008F10;
 }
@@ -708,6 +709,7 @@ body {
     }
 
     .form-card {
+        max-width: 100%;
         padding: 20px 16px;
     }
 
@@ -718,17 +720,8 @@ body {
     .form-top-row {
         align-items: center;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: flex-start;
         gap: 10px;
-    }
-
-    .form-top-row .form-actions {
-        justify-content: flex-end;
-    }
-
-    .form-top-row .submit-btn {
-        padding: 10px 12px;
-        font-size: 12px;
     }
 
     .form-row {

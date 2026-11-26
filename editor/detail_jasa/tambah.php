@@ -61,7 +61,6 @@ unset($_SESSION['error_jasa'], $_SESSION['old_jasa']);
 
             <div class="form-header">
                 <h1>Tambah Portofolio</h1>
-                <p>Kategori: <?= e($kategori['nama_kategori']) ?></p>
             </div>
 
             <form action="proses_tambah.php" method="POST" enctype="multipart/form-data">
@@ -97,12 +96,6 @@ unset($_SESSION['error_jasa'], $_SESSION['old_jasa']);
 
                     </div>
 
-                    <div class="form-actions">
-                        <button type="submit" class="submit-btn">
-                            Simpan Portofolio
-                        </button>
-                    </div>
-
                 </div>
 
                 <small class="upload-info">
@@ -118,34 +111,30 @@ unset($_SESSION['error_jasa'], $_SESSION['old_jasa']);
                     >
                 </div>
 
-                <div class="form-row">
+                <div class="form-group">
+                    <input
+                        type="text"
+                        id="nama_jasa"
+                        name="nama_jasa"
+                        maxlength="100"
+                        value="<?= e($old['nama_jasa'] ?? '') ?>"
+                        placeholder="Nama Jasa"
+                        required
+                    >
+                </div>
 
-                    <div class="form-group">
-                        <input
-                            type="text"
-                            id="nama_jasa"
-                            name="nama_jasa"
-                            maxlength="100"
-                            value="<?= e($old['nama_jasa'] ?? '') ?>"
-                            placeholder="Nama Jasa"
-                            required
-                        >
-                    </div>
-
-                    <div class="form-group">
-                        <input
-                            type="number"
-                            id="harga"
-                            name="harga"
-                            min="0"
-                            max="2147483647"
-                            step="1"
-                            value="<?= e($old['harga'] ?? '') ?>"
-                            placeholder="Harga Jasa"
-                            required
-                        >
-                    </div>
-
+                <div class="form-group">
+                    <input
+                        type="number"
+                        id="harga"
+                        name="harga"
+                        min="0"
+                        max="2147483647"
+                        step="1"
+                        value="<?= e($old['harga'] ?? '') ?>"
+                        placeholder="Harga Jasa"
+                        required
+                    >
                 </div>
 
                 <div class="form-group">
@@ -155,6 +144,12 @@ unset($_SESSION['error_jasa'], $_SESSION['old_jasa']);
                         rows="5"
                         placeholder="Deskripsi Jasa (Opsional)"
                     ><?= e($old['deskripsi'] ?? '') ?></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">
+                        Simpan Portofolio
+                    </button>
                 </div>
 
             </form>

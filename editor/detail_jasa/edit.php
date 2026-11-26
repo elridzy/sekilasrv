@@ -106,82 +106,67 @@ $gambar_awal = !empty($jasa['gambar_portofolio'])
 
                     </div>
 
-                    <div class="form-actions">
-                        <button type="submit" class="submit-btn">
-                            Simpan Perubahan
-                        </button>
-                    </div>
-
                 </div>
 
                 <small class="upload-info">
                     Format JPG, JPEG, dan PNG. Maksimal 5 MB.
                 </small>
 
-                <div class="form-group">
+                <div class="portfolio-list" id="preview-container">
 
-                    <div class="portfolio-list">
+                    <img
+                        src="<?= e($gambar_awal) ?>"
+                        alt="Portofolio <?= e($jasa['nama_jasa']) ?>"
+                        class="preview-image"
+                        id="preview-image"
+                        style="<?= $gambar_awal ? '' : 'display: none;' ?>"
+                    >
 
-                        <img
-                            src="<?= e($gambar_awal) ?>"
-                            alt="Portofolio <?= e($jasa['nama_jasa']) ?>"
-                            class="preview-image"
-                            id="preview-image"
-                            style="<?= $gambar_awal ? '' : 'display: none;' ?>"
-                            onclick="bukaGambar(this.src)"
-                        >
-
-                        <p id="gambar-kosong" style="<?= $gambar_awal ? 'display: none;' : '' ?>">
-                            Belum ada gambar portofolio.
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div class="form-row">
-
-                    <div class="form-group">
-
-                        <input
-                            type="text"
-                            id="nama_jasa"
-                            name="nama_jasa"
-                            maxlength="100"
-                            value="<?= e($jasa['nama_jasa']) ?>"
-                            placeholder="Nama Jasa"
-                            required
-                        >
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <input
-                            type="number"
-                            id="harga"
-                            name="harga"
-                            min="1"
-                            max="2147483647"
-                            step="1"
-                            value="<?= e($jasa['harga_jasa']) ?>"
-                            placeholder="Harga Jasa"
-                            required
-                        >
-
-                    </div>
+                    <p id="gambar-kosong" style="<?= $gambar_awal ? 'display: none;' : '' ?>">
+                        Belum ada gambar portofolio.
+                    </p>
 
                 </div>
 
                 <div class="form-group">
+                    <input
+                        type="text"
+                        id="nama_jasa"
+                        name="nama_jasa"
+                        maxlength="100"
+                        value="<?= e($jasa['nama_jasa']) ?>"
+                        placeholder="Nama Jasa"
+                        required
+                    >
+                </div>
 
+                <div class="form-group">
+                    <input
+                        type="number"
+                        id="harga"
+                        name="harga"
+                        min="1"
+                        max="2147483647"
+                        step="1"
+                        value="<?= e($jasa['harga_jasa']) ?>"
+                        placeholder="Harga Jasa"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
                     <textarea
                         id="deskripsi"
                         name="deskripsi"
                         rows="5"
                         placeholder="Deskripsi Jasa (Opsional)"
                     ><?= e($jasa['deskripsi_jasa']) ?></textarea>
+                </div>
 
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">
+                        Simpan Perubahan
+                    </button>
                 </div>
 
             </form>

@@ -56,14 +56,22 @@ function e($nilai)
 
                         <div class="category-list">
 
+                            <?php $nomor = 1; ?>
+
                             <?php foreach ($kategori_jasa as $kategori): ?>
 
                                 <div class="category-item">
 
                                     <div class="category-info">
+
+                                        <span class="category-number">
+                                            <?= $nomor++ ?>.
+                                        </span>
+
                                         <h2 class="category-name">
                                             <?= e($kategori['nama_kategori']) ?>
                                         </h2>
+
                                     </div>
 
                                     <a

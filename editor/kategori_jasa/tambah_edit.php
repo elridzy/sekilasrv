@@ -154,14 +154,22 @@ function e($nilai)
 
                         <div class="category-items">
 
+                            <?php $nomor = 1; ?>
+
                             <?php foreach ($daftarKategori as $kategori): ?>
 
                                 <div class="category-item">
 
                                     <div class="category-info">
+
+                                        <span class="category-number">
+                                            <?= $nomor++ ?>.
+                                        </span>
+
                                         <p class="category-name">
                                             <?= e($kategori['nama_kategori']) ?>
                                         </p>
+
                                     </div>
 
                                     <div class="category-actions">
