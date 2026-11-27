@@ -32,7 +32,7 @@ session_start();
 
                 <!-- deskripsi halaman -->
                 <p class="subtitle">
-                    Login untuk mengelola jasa.
+                    Login untuk mengelola jasa
                 </p>
 
                 <!-- form login editor -->

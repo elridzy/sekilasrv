@@ -158,7 +158,7 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         type="text"
                         id="search-input"
                         class="search-input"
-                        placeholder="🔍 Cari portofolio berdasarkan nama jasa"
+                        placeholder="🔍 Cari jasa berdasarkan nama jasa"
                         autocomplete="off"
                     >
 
@@ -254,7 +254,7 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <!-- pesan jika hasil pencarian tidak ditemukan -->
                     <div class="empty-message" id="search-empty" style="display: none;">
 
-                        <h3>Portofolio tidak ditemukan.</h3>
+                        <h3>Jasa tidak ditemukan</h3>
 
                     </div>
 
