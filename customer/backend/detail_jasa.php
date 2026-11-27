@@ -96,21 +96,24 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- container utama -->
     <div class="container">
 
-        <!-- bagian header halaman -->
-        <div class="header-layout">
+        <!-- layout panel informasi dan portofolio -->
+        <div class="dashboard-layout">
 
-            <!-- informasi kategori -->
-            <div class="page-header">
-                <h1>Detail Jasa</h1>
+            <!-- panel informasi di sebelah kiri -->
+            <aside class="action-header">
 
-                <p>
-                    Kategori: <?= e($kategori['nama_kategori']) ?>
-                </p>
-            </div>
+                <!-- informasi kategori -->
+                <div class="page-header">
 
-            <!-- tombol navigasi dan kontak -->
-            <div class="action-header">
+                    <h1>Detail Jasa</h1>
 
+                    <p>
+                        Kategori: <?= e($kategori['nama_kategori']) ?>
+                    </p>
+
+                </div>
+
+                <!-- tombol kembali ke kategori jasa -->
                 <a href="kategori_jasa.php" class="back-btn">
                     Kategori Jasa
                 </a>
@@ -143,13 +146,13 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 <?php endif; ?>
 
-            </div>
+            </aside>
 
-            <!-- baris pencarian -->
-            <div class="search-row">
+            <!-- bagian daftar portofolio di sebelah kanan -->
+            <main class="portfolio-content">
 
-                <!-- input pencarian nama jasa -->
-                <div class="search-form">
+                <!-- baris pencarian -->
+                <div class="search-row">
 
                     <input
                         type="text"
@@ -161,101 +164,105 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 </div>
 
-            </div>
+                <!-- menampilkan pesan jika jasa kosong -->
+                <?php if (empty($data_jasa)): ?>
 
-        </div>
+                    <div class="empty-message">
 
-        <!-- menampilkan pesan jika jasa kosong -->
-        <?php if (empty($data_jasa)): ?>
-
-            <div class="empty-message">
-                <h3>Belum ada detail jasa yang tersedia.</h3>
-            </div>
-
-        <?php else: ?>
-
-            <!-- daftar kartu jasa -->
-            <div class="service-list" id="service-list">
-
-                <?php foreach ($data_jasa as $jasa): ?>
-
-                    <!-- kartu detail jasa -->
-                    <div
-                        class="service-card"
-                        data-nama="<?= e($jasa['nama_jasa']) ?>"
-                    >
-
-                        <!-- bagian portofolio -->
-                        <div class="portfolio-section">
-
-                            <?php if (!empty($jasa['gambar_portofolio'])): ?>
-
-                                <!-- gambar portofolio -->
-                                <div class="portfolio-list">
-
-                                    <img
-                                        src="../../<?= e($jasa['gambar_portofolio']) ?>"
-                                        alt="Portofolio <?= e($jasa['nama_jasa']) ?>"
-                                        onclick="bukaGambar(this.src)"
-                                    >
-
-                                </div>
-
-                            <?php else: ?>
-
-                                <!-- pesan jika gambar belum tersedia -->
-                                <div class="no-image">
-                                    Belum ada gambar portofolio.
-                                </div>
-
-                            <?php endif; ?>
-
-                        </div>
-
-                        <!-- nama jasa -->
-                        <div class="service-header">
-                            <h3><?= e($jasa['nama_jasa']) ?></h3>
-                        </div>
-
-                        <!-- informasi deskripsi dan harga -->
-                        <div class="service-info">
-
-                            <?php if (!empty(trim($jasa['deskripsi_jasa'] ?? ''))): ?>
-
-                                <p>
-                                    <strong>Deskripsi Jasa:</strong><br>
-                                    <?= nl2br(e($jasa['deskripsi_jasa'])) ?>
-                                </p>
-
-                            <?php endif; ?>
-
-                            <p>
-                                <strong>Harga Jasa:</strong><br>
-
-                                <span class="price">
-                                    Rp<?= number_format(
-                                        (float) $jasa['harga_jasa'],
-                                        0,
-                                        ',',
-                                        '.'
-                                    ) ?>
-                                </span>
-                            </p>
-
-                        </div>
+                        <h3>Belum ada detail jasa yang tersedia.</h3>
 
                     </div>
 
-                <?php endforeach; ?>
+                <?php else: ?>
 
-            </div>
+                    <!-- daftar kartu jasa -->
+                    <div class="service-list" id="service-list">
 
-            <!-- pesan jika hasil pencarian tidak ditemukan -->
-            <div class="empty-message" id="search-empty" style="display: none;">
-                <h3>Portofolio tidak ditemukan.</h3>
-            </div>
+                        <?php foreach ($data_jasa as $jasa): ?>
 
-        <?php endif; ?>
+                            <!-- kartu detail jasa -->
+                            <div
+                                class="service-card"
+                                data-nama="<?= e($jasa['nama_jasa']) ?>"
+                            >
+
+                                <!-- bagian portofolio -->
+                                <div class="portfolio-section">
+
+                                    <?php if (!empty($jasa['gambar_portofolio'])): ?>
+
+                                        <!-- gambar portofolio -->
+                                        <div class="portfolio-list">
+
+                                            <img
+                                                src="../../<?= e($jasa['gambar_portofolio']) ?>"
+                                                alt="Portofolio <?= e($jasa['nama_jasa']) ?>"
+                                                onclick="bukaGambar(this.src)"
+                                            >
+
+                                        </div>
+
+                                    <?php else: ?>
+
+                                        <!-- pesan jika gambar belum tersedia -->
+                                        <p>Belum ada gambar portofolio.</p>
+
+                                    <?php endif; ?>
+
+                                </div>
+
+                                <!-- nama jasa -->
+                                <div class="service-header">
+
+                                    <h3><?= e($jasa['nama_jasa']) ?></h3>
+
+                                </div>
+
+                                <!-- informasi deskripsi dan harga -->
+                                <div class="service-info">
+
+                                    <?php if (!empty(trim($jasa['deskripsi_jasa'] ?? ''))): ?>
+
+                                        <p>
+                                            <strong>Deskripsi Jasa:</strong><br>
+                                            <?= nl2br(e($jasa['deskripsi_jasa'])) ?>
+                                        </p>
+
+                                    <?php endif; ?>
+
+                                    <p>
+                                        <strong>Harga Jasa:</strong><br>
+
+                                        <span class="price">
+                                            Rp<?= number_format(
+                                                (float) $jasa['harga_jasa'],
+                                                0,
+                                                ',',
+                                                '.'
+                                            ) ?>
+                                        </span>
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        <?php endforeach; ?>
+
+                    </div>
+
+                    <!-- pesan jika hasil pencarian tidak ditemukan -->
+                    <div class="empty-message" id="search-empty" style="display: none;">
+
+                        <h3>Portofolio tidak ditemukan.</h3>
+
+                    </div>
+
+                <?php endif; ?>
+
+            </main>
+
+        </div>
 
     </div>
 
@@ -285,53 +292,63 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
         const searchEmpty = document.getElementById('search-empty');
 
         // menjalankan pencarian nama jasa
-        searchInput.addEventListener('input', function() {
+        if (searchInput) {
 
-            const kataKunci = this.value.toLowerCase().trim();
-            let jumlahDitemukan = 0;
+            searchInput.addEventListener('input', function() {
 
-            // memeriksa setiap kartu jasa
-            serviceCards.forEach(function(card) {
+                const kataKunci = this.value.toLowerCase().trim();
+                let jumlahDitemukan = 0;
 
-                const namaJasa = card.dataset.nama.toLowerCase();
+                // memeriksa setiap kartu jasa
+                serviceCards.forEach(function(card) {
 
-                if (namaJasa.includes(kataKunci)) {
-                    card.style.display = '';
-                    jumlahDitemukan++;
+                    const namaJasa = card.dataset.nama.toLowerCase();
+
+                    if (namaJasa.includes(kataKunci)) {
+                        card.style.display = '';
+                        jumlahDitemukan++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+
+                });
+
+                // menampilkan hasil pencarian
+                if (jumlahDitemukan === 0) {
+                    serviceList.style.display = 'none';
+                    searchEmpty.style.display = 'block';
                 } else {
-                    card.style.display = 'none';
+                    serviceList.style.display = 'grid';
+                    searchEmpty.style.display = 'none';
                 }
 
             });
 
-            // menampilkan hasil pencarian
-            if (jumlahDitemukan === 0) {
-                serviceList.style.display = 'none';
-                searchEmpty.style.display = 'block';
-            } else {
-                serviceList.style.display = '';
-                searchEmpty.style.display = 'none';
-            }
+        }
 
-        });
+        // mengambil elemen lightbox
+        const lightbox = document.getElementById('lightbox');
+        const gambarPenuh = document.getElementById('gambar-penuh');
 
         // membuka preview gambar
         function bukaGambar(src) {
-            document.getElementById('gambar-penuh').src = src;
-            document.getElementById('lightbox').style.display = 'flex';
+            gambarPenuh.src = src;
+            lightbox.style.display = 'flex';
         }
 
-        // fungsi menutup preview gambar
+        // menutup preview gambar
         function tutupGambar() {
-            document.getElementById('lightbox').style.display = 'none';
-            document.getElementById('gambar-penuh').src = '';
+            lightbox.style.display = 'none';
+            gambarPenuh.removeAttribute('src');
         }
 
         // menutup preview menggunakan tombol escape
         document.addEventListener('keydown', function(event) {
+
             if (event.key === 'Escape') {
                 tutupGambar();
             }
+
         });
 
     </script>

@@ -16,7 +16,7 @@ body {
 /* container utama */
 .container {
     width: calc(100% - 40px);
-    max-width: 1100px;
+    max-width: 1400px;
     min-height: 100vh;
     margin: 0 auto;
     padding: 30px 0;
@@ -25,42 +25,49 @@ body {
     justify-content: center;
 }
 
-/* pembungkus header */
-.header-layout {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 18px;
+/* layout panel pengelolaan dan portofolio */
+.dashboard-layout {
+    display: grid;
+    grid-template-columns: 300px minmax(0, 1fr);
+    align-items: start;
+    gap: 25px;
     width: 100%;
-    margin-bottom: 18px;
 }
 
-/* header halaman */
+/* panel pengelolaan */
+.action-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 75px;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+    row-gap: 18px;
+    width: 100%;
+    min-width: 0;
+    padding: 20px;
+    background: #1E222B;
+    border: 1px solid #383D49;
+    border-radius: 7px;
+}
+
+/* header halaman di dalam panel kiri */
 .page-header {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    flex: 0 0 max-content;
-    width: fit-content;
+    align-items: flex-start;
+    grid-column: 1 / -1;
+    width: 100%;
     min-height: 75px;
-    padding: 10px 15px;
-    background: #1E222B;
-    border: 1px solid #383D49;
-    border-radius: 7px;
-    text-align: center;
-    margin-bottom: 0;
+    padding: 10px 0;
+    margin-bottom: -15px;
+    position: relative;
+    top: -15px;
 }
 
 .page-header h1 {
     font-size: 22px;
     margin-bottom: 5px;
-}
-
-.header-info {
-    display: flex;
-    align-items: center;
-    width: 100%;
 }
 
 .page-header p {
@@ -70,63 +77,21 @@ body {
     white-space: nowrap;
 }
 
-/* header aksi */
-.action-header {
-    display: grid;
-    grid-template-columns: max-content minmax(0, 230px) minmax(0, 230px) max-content max-content;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    width: 100%;
-    min-width: 0;
-    margin-bottom: 0;
-    padding: 20px;
-    background: #1E222B;
-    border: 1px solid #383D49;
-    border-radius: 7px;
-}
-
-/* tombol cek halaman customer */
-.customer-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 0;
-    min-height: 39px;
-    padding: 10px 14px;
-    background: #22262F;
-    color: #FFFFFF;
-    border: 1px solid #383D49;
-    border-radius: 7px;
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: normal;
-    text-decoration: none;
-    text-align: center;
-    white-space: nowrap;
-    cursor: pointer;
-    transition: background-color 0.2s, border-color 0.2s;
-}
-
-.customer-btn:hover {
-    background: #22262F;
-    border-color: #1877F2;
-}
-
 /* tombol tambah portofolio */
 .add-btn {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 0;
+    grid-column: 1 / -1;
+    width: 100%;
     min-height: 39px;
     padding: 10px 14px;
-    text-decoration: none;
     background: #1877F2;
     color: #FFFFFF;
     border-radius: 7px;
     font-size: 13px;
     font-weight: normal;
+    text-decoration: none;
     text-align: center;
     white-space: nowrap;
 }
@@ -135,27 +100,20 @@ body {
     background: #0866D6;
 }
 
-/* input nomor whatsapp */
+/* form whatsapp */
 .whatsapp-form {
     display: flex;
     align-items: center;
-    width: 230px;
-    max-width: 230px;
+    grid-column: 1 / -1;
+    gap: 10px;
+    width: 100%;
     min-width: 0;
     height: 39px;
     margin: 0;
 }
 
-.whatsapp-input {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    width: 100%;
-    height: 39px;
-    min-width: 0;
-}
-
-.whatsapp-form input[type="hidden"] {
+.whatsapp-form input[type="hidden"],
+.instagram-form input[type="hidden"] {
     display: none;
 }
 
@@ -180,15 +138,16 @@ body {
 }
 
 .whatsapp-form input[type="tel"]:focus {
-    border: 1px solid #25D366;
+    border-color: #25D366;
     outline: none;
 }
 
 /* tombol simpan whatsapp */
 .whatsapp-btn {
     flex-shrink: 0;
+    width: 75px;
     min-height: 39px;
-    padding: 10px 12px;
+    padding: 10px;
     background: #00AA13;
     color: #FFFFFF;
     border: 1px solid #00AA13;
@@ -204,28 +163,16 @@ body {
     border-color: #008F10;
 }
 
-/* input username instagram */
+/* form instagram */
 .instagram-form {
     display: flex;
     align-items: center;
-    width: 230px;
-    max-width: 230px;
+    grid-column: 1 / -1;
+    gap: 10px;
+    width: 100%;
     min-width: 0;
     height: 39px;
     margin: 0;
-}
-
-.instagram-input {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    width: 100%;
-    height: 39px;
-    min-width: 0;
-}
-
-.instagram-form input[type="hidden"] {
-    display: none;
 }
 
 .instagram-form input[type="text"] {
@@ -249,15 +196,16 @@ body {
 }
 
 .instagram-form input[type="text"]:focus {
-    border: 1px solid #E1306C;
+    border-color: #E1306C;
     outline: none;
 }
 
 /* tombol simpan instagram */
 .instagram-btn {
     flex-shrink: 0;
+    width: 75px;
     min-height: 39px;
-    padding: 10px 12px;
+    padding: 10px;
     background: #E1306C;
     color: #FFFFFF;
     border: 1px solid #E1306C;
@@ -273,19 +221,48 @@ body {
     border-color: #C13584;
 }
 
+/* tombol cek halaman customer */
+.customer-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column: 1;
+    width: 100%;
+    min-height: 39px;
+    padding: 10px;
+    background: #22262F;
+    color: #FFFFFF;
+    border: 1px solid #383D49;
+    border-radius: 7px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: normal;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.customer-btn:hover {
+    background: #22262F;
+    border-color: #1877F2;
+}
+
 /* tombol logout */
 .logout-btn {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 75px;
+    grid-column: 2;
+    width: 75px;
     min-height: 39px;
-    padding: 10px 14px;
+    padding: 10px;
     background: #D93636;
     color: #FFFFFF;
     border: 1px solid #D93636;
     border-radius: 7px;
-    font-size: 13px;
+    font-size: 12px;
     text-decoration: none;
     text-align: center;
     white-space: nowrap;
@@ -296,18 +273,21 @@ body {
     border-color: #B92727;
 }
 
-/* baris pencarian */
-.search-row {
+/* bagian utama portofolio */
+.portfolio-content {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    min-width: 0;
     width: 100%;
 }
 
-/* form pencarian */
-.search-form {
+/* baris pencarian */
+.search-row {
     display: flex;
-    align-items: center;
-    width: fit-content;
+    align-items: flex-start;
+    width: 100%;
+    min-height: 39px;
+    margin-bottom: 20px;
 }
 
 /* input pencarian */
@@ -325,39 +305,15 @@ body {
     outline: none;
 }
 
-/* warna placeholder saat belum diisi */
 .search-input::placeholder {
     color: #A0A5B1;
     opacity: 1;
 }
 
-/* tampilan input saat dipilih */
 .search-input:focus {
     color: #FFFFFF;
     border: 1px solid #1877F2;
     outline: none;
-}
-
-/* tampilan ketika data jasa kosong */
-.empty-message {
-    width: 100%;
-    padding: 35px 20px;
-    background: #1E222B;
-    border: 1px solid #303642;
-    border-radius: 8px;
-    text-align: center;
-}
-
-.empty-message h3 {
-    color: #A0A5B1;
-    font-size: 18px;
-    font-weight: normal;
-}
-
-.empty-message p {
-    color: #A0A5B1;
-    font-size: 13px;
-    line-height: 1.5;
 }
 
 /* daftar kartu jasa */
@@ -377,10 +333,10 @@ body {
     width: 100%;
     min-width: 0;
     height: 100%;
+    padding: 16px;
     background: #1E222B;
     border: 1px solid #383D49;
     border-radius: 7px;
-    padding: 20px;
 }
 
 /* bagian portofolio */
@@ -388,28 +344,13 @@ body {
     width: 100%;
 }
 
-.portfolio-section h4 {
-    font-size: 14px;
-    margin-bottom: 10px;
-}
-
-/* tulisan ketika portofolio belum tersedia */
-.portfolio-section p {
-    color: #A0A5B1;
-    font-size: 13px;
-    line-height: 1.5;
-}
-
 /* daftar gambar portofolio */
 .portfolio-list {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
     width: 100%;
-    clear: both;
 }
 
-/* ukuran dan tampilan gambar portofolio */
+/* ukuran gambar portofolio agar seragam */
 .portfolio-list img {
     display: block;
     width: 100%;
@@ -418,30 +359,54 @@ body {
     background: #1E222B;
     border-radius: 5px;
     border: 1px solid #383D49;
+    cursor: pointer;
+}
+
+.portfolio-list img:hover {
+    opacity: 0.85;
+}
+
+/* tulisan ketika portofolio belum tersedia */
+.portfolio-section p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    padding: 10px;
+    background: #292F3A;
+    color: #A0A5B1;
+    border-radius: 5px;
+    font-size: 13px;
+    text-align: center;
 }
 
 /* nama jasa */
 .service-header {
-    margin-top: 16px;
+    margin-top: 12px;
 }
 
 .service-header h3 {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.5;
     overflow-wrap: anywhere;
 }
 
-/* deskripsi, harga, dan tanggal upload */
+/* informasi detail jasa */
 .service-info {
     display: flex;
     flex-direction: column;
     flex: 1;
-    gap: 12px;
+    gap: 10px;
     color: #D5D9E1;
     line-height: 1.6;
-    margin-top: 12px;
+    margin-top: 10px;
     font-size: 13px;
     overflow-wrap: anywhere;
+}
+
+.service-info p {
+    margin: 0;
 }
 
 .service-info strong {
@@ -493,6 +458,22 @@ body {
     background: #B92727;
 }
 
+/* pesan data kosong dan hasil pencarian */
+.empty-message {
+    width: 100%;
+    padding: 35px 20px;
+    background: #1E222B;
+    border: 1px solid #303642;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.empty-message h3 {
+    color: #A0A5B1;
+    font-size: 18px;
+    font-weight: normal;
+}
+
 /* tampilan lightbox */
 .lightbox {
     display: none;
@@ -527,23 +508,56 @@ body {
     border-radius: 5px;
 }
 
-/* responsive: tablet */
-@media (max-width: 900px) {
+/* efek fokus tautan */
+a:focus-visible {
+    outline: 2px solid #1877F2;
+    outline-offset: 3px;
+}
+
+/* responsive: layar sedang */
+@media (max-width: 1100px) {
+    .dashboard-layout {
+        grid-template-columns: 280px minmax(0, 1fr);
+        gap: 18px;
+    }
+
     .action-header {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        justify-content: space-between;
-        gap: 15px;
-        width: 100%;
+        grid-template-columns: minmax(0, 1fr) 70px;
+        column-gap: 8px;
+        padding: 18px;
     }
 
-    .action-header > * {
-        max-width: 100%;
-    }
-
+    .add-btn,
     .whatsapp-form,
     .instagram-form {
         width: 100%;
-        max-width: none;
+    }
+
+    .whatsapp-btn,
+    .instagram-btn,
+    .logout-btn {
+        width: 70px;
+    }
+
+    .customer-btn {
+        width: 100%;
+        font-size: 12px;
+    }
+
+    .service-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* responsive: tablet */
+@media (max-width: 750px) {
+    .dashboard-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .action-header {
+        max-width: 300px;
+        margin: 0 auto;
     }
 
     .service-list {
@@ -558,51 +572,45 @@ body {
         padding: 20px 0;
     }
 
-    .page-header {
+    .action-header {
         width: 100%;
-        align-items: flex-start;
-        padding: 16px;
+        padding: 18px;
+        column-gap: 8px;
+        row-gap: 15px;
+    }
+
+    .page-header {
+        min-height: 75px;
     }
 
     .page-header h1 {
         font-size: 22px;
     }
 
-    .page-header p {
-        font-size: 14px;
-    }
-
-    .header-info {
-        justify-content: flex-start;
-    }
-
-    .action-header {
-        grid-template-columns: 1fr;
-        gap: 15px;
-        padding: 16px;
-    }
-
-    .action-header > * {
-        width: 100%;
-    }
-
+    .add-btn,
     .whatsapp-form,
     .instagram-form {
         width: 100%;
-        max-width: none;
+    }
+
+    .whatsapp-btn,
+    .instagram-btn,
+    .logout-btn {
+        width: 70px;
+    }
+
+    .customer-btn {
+        width: 100%;
+        font-size: 12px;
     }
 
     .search-row {
-        width: 100%;
-    }
-
-    .search-form {
-        width: 100%;
+        min-height: auto;
+        margin-bottom: 15px;
     }
 
     .search-input {
         width: 100%;
-        max-width: 100%;
     }
 
     .service-list {

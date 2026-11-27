@@ -158,22 +158,20 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- container utama halaman -->
     <div class="container">
 
-        <!-- bagian header halaman -->
-        <div class="header-layout">
+        <!-- pembungkus panel pengelolaan dan portofolio -->
+        <div class="dashboard-layout">
 
-            <!-- informasi kategori jasa -->
-            <div class="page-header">
+            <!-- panel pengelolaan di sebelah kiri -->
+            <aside class="action-header">
 
-                <h1>Kelola Detail Jasa</h1>
+                <!-- header halaman -->
+                <div class="page-header">
 
-                <div class="header-info">
+                    <h1>Kelola Detail Jasa</h1>
+
                     <p>Kategori: <?= e($kategori['nama_kategori']) ?></p>
+
                 </div>
-
-            </div>
-
-            <!-- kumpulan tombol dan form aksi -->
-            <div class="action-header">
 
                 <!-- tombol tambah portofolio -->
                 <a
@@ -186,71 +184,63 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <!-- form penyimpanan nomor whatsapp -->
                 <form method="POST" class="whatsapp-form">
 
-                    <div class="whatsapp-input">
+                    <input
+                        type="hidden"
+                        name="csrf_token"
+                        value="<?= e($_SESSION['csrf_token']) ?>"
+                    >
 
-                        <input
-                            type="hidden"
-                            name="csrf_token"
-                            value="<?= e($_SESSION['csrf_token']) ?>"
-                        >
+                    <input
+                        type="hidden"
+                        name="aksi"
+                        value="whatsapp"
+                    >
 
-                        <input
-                            type="hidden"
-                            name="aksi"
-                            value="whatsapp"
-                        >
+                    <input
+                        type="tel"
+                        id="no_wa"
+                        name="no_wa"
+                        placeholder="Nomor WhatsApp Editor"
+                        value="<?= e($editor['no_wa'] ?? '') ?>"
+                        pattern="\+?[0-9]{8,15}"
+                        maxlength="16"
+                        required
+                    >
 
-                        <input
-                            type="tel"
-                            id="no_wa"
-                            name="no_wa"
-                            placeholder="Nomor WhatsApp Editor"
-                            value="<?= e($editor['no_wa'] ?? '') ?>"
-                            pattern="\+?[0-9]{8,15}"
-                            maxlength="16"
-                            required
-                        >
-
-                        <button type="submit" class="whatsapp-btn">
-                            Simpan
-                        </button>
-
-                    </div>
+                    <button type="submit" class="whatsapp-btn">
+                        Simpan
+                    </button>
 
                 </form>
 
                 <!-- form penyimpanan username instagram -->
                 <form method="POST" class="instagram-form">
 
-                    <div class="instagram-input">
+                    <input
+                        type="hidden"
+                        name="csrf_token"
+                        value="<?= e($_SESSION['csrf_token']) ?>"
+                    >
 
-                        <input
-                            type="hidden"
-                            name="csrf_token"
-                            value="<?= e($_SESSION['csrf_token']) ?>"
-                        >
+                    <input
+                        type="hidden"
+                        name="aksi"
+                        value="instagram"
+                    >
 
-                        <input
-                            type="hidden"
-                            name="aksi"
-                            value="instagram"
-                        >
+                    <input
+                        type="text"
+                        id="username_ig"
+                        name="username_ig"
+                        placeholder="Username Instagram"
+                        value="<?= e($editor['username_ig'] ?? '') ?>"
+                        maxlength="30"
+                        required
+                    >
 
-                        <input
-                            type="text"
-                            id="username_ig"
-                            name="username_ig"
-                            placeholder="Username Instagram"
-                            value="<?= e($editor['username_ig'] ?? '') ?>"
-                            maxlength="30"
-                            required
-                        >
-
-                        <button type="submit" class="instagram-btn">
-                            Simpan
-                        </button>
-
-                    </div>
+                    <button type="submit" class="instagram-btn">
+                        Simpan
+                    </button>
 
                 </form>
 
@@ -273,12 +263,13 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     Logout
                 </a>
 
-            </div>
+            </aside>
 
-            <!-- baris pencarian terpisah -->
-            <div class="search-row">
+            <!-- bagian daftar portofolio di sebelah kanan -->
+            <main class="portfolio-content">
 
-                <div class="search-form">
+                <!-- baris pencarian -->
+                <div class="search-row">
 
                     <input
                         type="text"
@@ -290,140 +281,142 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 </div>
 
-            </div>
+                <!-- menampilkan pesan jika belum ada jasa -->
+                <?php if (empty($data_jasa)): ?>
 
-        </div>
+                    <div class="empty-message" id="empty-message">
 
-        <!-- menampilkan pesan jika belum ada jasa -->
-        <?php if (empty($data_jasa)): ?>
-
-            <div class="empty-message" id="empty-message">
-
-                <h3>Belum ada detail jasa yang tersedia.</h3>
-
-            </div>
-
-        <?php else: ?>
-
-            <!-- daftar seluruh jasa -->
-            <div class="service-list" id="service-list">
-
-                <?php foreach ($data_jasa as $jasa): ?>
-
-                    <!-- kartu detail jasa -->
-                    <div
-                        class="service-card"
-                        data-nama="<?= e($jasa['nama_jasa']) ?>"
-                    >
-
-                        <!-- bagian gambar portofolio -->
-                        <div class="portfolio-section">
-
-                            <?php if (!empty($jasa['gambar_portofolio'])): ?>
-
-                                <div class="portfolio-list">
-
-                                    <img
-                                        src="../../../<?= e($jasa['gambar_portofolio']) ?>"
-                                        alt="Portofolio <?= e($jasa['nama_jasa']) ?>"
-                                        class="preview-image"
-                                        onclick="bukaGambar(this.src)"
-                                    >
-
-                                </div>
-
-                            <?php else: ?>
-
-                                <p>Belum ada gambar portofolio.</p>
-
-                            <?php endif; ?>
-
-                        </div>
-
-                        <!-- nama jasa -->
-                        <div class="service-header">
-                            <h3><?= e($jasa['nama_jasa']) ?></h3>
-                        </div>
-
-                        <!-- informasi detail jasa -->
-                        <div class="service-info">
-
-                            <?php if (!empty(trim($jasa['deskripsi_jasa'] ?? ''))): ?>
-
-                                <p>
-                                    <strong>Deskripsi Jasa:</strong><br>
-                                    <?= nl2br(e($jasa['deskripsi_jasa'])) ?>
-                                </p>
-
-                            <?php endif; ?>
-
-                            <p>
-                                <strong>Harga Jasa:</strong><br>
-                                Rp <?= number_format((float) $jasa['harga_jasa'], 0, ',', '.') ?>
-                            </p>
-
-                            <p>
-                                <strong>Tanggal Upload:</strong><br>
-                                <?= e(date('d-m-Y', strtotime($jasa['tanggal_upload']))) ?>
-                            </p>
-
-                        </div>
-
-                        <!-- tombol edit dan hapus jasa -->
-                        <div class="service-actions">
-
-                            <a
-                                href="edit.php?id=<?= (int) $jasa['id_detail_jasa'] ?>&id_kategori_jasa=<?= $id_kategori_jasa ?>"
-                                class="edit-btn"
-                            >
-                                Edit
-                            </a>
-
-                            <!-- form hapus portofolio -->
-                            <form
-                                action="proses_hapus.php"
-                                method="POST"
-                                onsubmit="return confirm('Apakah anda ingin menghapus portofolio ini?')"
-                            >
-
-                                <input
-                                    type="hidden"
-                                    name="id_detail_jasa"
-                                    value="<?= (int) $jasa['id_detail_jasa'] ?>"
-                                >
-
-                                <input
-                                    type="hidden"
-                                    name="id_kategori_jasa"
-                                    value="<?= $id_kategori_jasa ?>"
-                                >
-
-                                <input
-                                    type="hidden"
-                                    name="csrf_token"
-                                    value="<?= e($_SESSION['csrf_token']) ?>"
-                                >
-
-                                <button type="submit" class="delete-btn">
-                                    Hapus
-                                </button>
-
-                            </form>
-
-                        </div>
+                        <h3>Belum ada detail jasa yang tersedia.</h3>
 
                     </div>
 
-                <?php endforeach; ?>
+                <?php else: ?>
 
-            </div>
+                    <!-- daftar seluruh jasa -->
+                    <div class="service-list" id="service-list">
 
-            <!-- pesan jika hasil pencarian tidak ditemukan -->
-            <div class="empty-message" id="empty-message" style="display: none;">
-                <h3 id="empty-text">Portofolio tidak ditemukan.</h3>
-            </div>
+                        <?php foreach ($data_jasa as $jasa): ?>
 
-        <?php endif; ?>
+                            <!-- kartu detail jasa -->
+                            <div
+                                class="service-card"
+                                data-nama="<?= e($jasa['nama_jasa']) ?>"
+                            >
+
+                                <!-- bagian gambar portofolio -->
+                                <div class="portfolio-section">
+
+                                    <?php if (!empty($jasa['gambar_portofolio'])): ?>
+
+                                        <div class="portfolio-list">
+
+                                            <img
+                                                src="../../../<?= e($jasa['gambar_portofolio']) ?>"
+                                                alt="Portofolio <?= e($jasa['nama_jasa']) ?>"
+                                                class="preview-image"
+                                                onclick="bukaGambar(this.src)"
+                                            >
+
+                                        </div>
+
+                                    <?php else: ?>
+
+                                        <p>Belum ada gambar portofolio.</p>
+
+                                    <?php endif; ?>
+
+                                </div>
+
+                                <!-- nama jasa -->
+                                <div class="service-header">
+                                    <h3><?= e($jasa['nama_jasa']) ?></h3>
+                                </div>
+
+                                <!-- informasi detail jasa -->
+                                <div class="service-info">
+
+                                    <?php if (!empty(trim($jasa['deskripsi_jasa'] ?? ''))): ?>
+
+                                        <p>
+                                            <strong>Deskripsi Jasa:</strong><br>
+                                            <?= nl2br(e($jasa['deskripsi_jasa'])) ?>
+                                        </p>
+
+                                    <?php endif; ?>
+
+                                    <p>
+                                        <strong>Harga Jasa:</strong><br>
+                                        Rp <?= number_format((float) $jasa['harga_jasa'], 0, ',', '.') ?>
+                                    </p>
+
+                                    <p>
+                                        <strong>Tanggal Upload:</strong><br>
+                                        <?= e(date('d-m-Y', strtotime($jasa['tanggal_upload']))) ?>
+                                    </p>
+
+                                </div>
+
+                                <!-- tombol edit dan hapus jasa -->
+                                <div class="service-actions">
+
+                                    <a
+                                        href="edit.php?id=<?= (int) $jasa['id_detail_jasa'] ?>&id_kategori_jasa=<?= $id_kategori_jasa ?>"
+                                        class="edit-btn"
+                                    >
+                                        Edit
+                                    </a>
+
+                                    <!-- form hapus portofolio -->
+                                    <form
+                                        action="proses_hapus.php"
+                                        method="POST"
+                                        onsubmit="return confirm('Apakah anda ingin menghapus portofolio ini?')"
+                                    >
+
+                                        <input
+                                            type="hidden"
+                                            name="id_detail_jasa"
+                                            value="<?= (int) $jasa['id_detail_jasa'] ?>"
+                                        >
+
+                                        <input
+                                            type="hidden"
+                                            name="id_kategori_jasa"
+                                            value="<?= $id_kategori_jasa ?>"
+                                        >
+
+                                        <input
+                                            type="hidden"
+                                            name="csrf_token"
+                                            value="<?= e($_SESSION['csrf_token']) ?>"
+                                        >
+
+                                        <button type="submit" class="delete-btn">
+                                            Hapus
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+                            </div>
+
+                        <?php endforeach; ?>
+
+                    </div>
+
+                    <!-- pesan jika hasil pencarian tidak ditemukan -->
+                    <div class="empty-message" id="no-results" style="display: none;">
+
+                        <h3>Portofolio tidak ditemukan.</h3>
+
+                    </div>
+
+                <?php endif; ?>
+
+            </main>
+
+        </div>
 
     </div>
 
@@ -445,44 +438,49 @@ $data_jasa = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- fitur pencarian dan lightbox -->
     <script>
 
-        // fitur live search
+        // mengambil elemen pencarian
         const searchInput = document.getElementById('search-input');
         const serviceCards = document.querySelectorAll('.service-card');
-        const emptyMessage = document.getElementById('empty-message');
+        const noResults = document.getElementById('no-results');
         const serviceList = document.getElementById('service-list');
 
-        searchInput.addEventListener('input', function () {
+        // menjalankan fitur live search
+        if (searchInput) {
 
-            const kataKunci = this.value.toLowerCase().trim();
-            let jumlahDitemukan = 0;
+            searchInput.addEventListener('input', function () {
 
-            serviceCards.forEach(function (card) {
+                const kataKunci = this.value.toLowerCase().trim();
+                let jumlahDitemukan = 0;
 
-                const namaJasa = card.dataset.nama.toLowerCase();
+                serviceCards.forEach(function (card) {
 
-                if (namaJasa.includes(kataKunci)) {
-                    card.style.display = '';
-                    jumlahDitemukan++;
-                } else {
-                    card.style.display = 'none';
+                    const namaJasa = card.dataset.nama.toLowerCase();
+
+                    if (namaJasa.includes(kataKunci)) {
+                        card.style.display = '';
+                        jumlahDitemukan++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+
+                });
+
+                // menampilkan pesan jika hasil pencarian kosong
+                if (serviceCards.length > 0) {
+
+                    if (jumlahDitemukan === 0) {
+                        noResults.style.display = 'block';
+                        serviceList.style.display = 'none';
+                    } else {
+                        noResults.style.display = 'none';
+                        serviceList.style.display = 'grid';
+                    }
+
                 }
 
             });
 
-            // menampilkan pesan jika hasil pencarian kosong
-            if (serviceCards.length > 0) {
-
-                if (jumlahDitemukan === 0) {
-                    emptyMessage.style.display = 'block';
-                    serviceList.style.display = 'none';
-                } else {
-                    emptyMessage.style.display = 'none';
-                    serviceList.style.display = '';
-                }
-
-            }
-
-        });
+        }
 
         // mengatur lightbox gambar
         const lightbox = document.getElementById('lightbox');
